@@ -1,5 +1,7 @@
 package com.wyl.datasourceTM.utils;
 
+import com.wyl.common.utils.Logger;
+
 public class BeTestClass {  
     static Logger log=Logger.getLogger(BeTestClass.class);  
       

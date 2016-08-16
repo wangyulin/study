@@ -1,4 +1,4 @@
-package com.wyl.datasourceTM.utils;
+package com.wyl.common.utils;
 
 import org.apache.log4j.PropertyConfigurator;
 

@@ -1,4 +1,4 @@
-package com.wyl.datasourceTM.utils;
+package com.wyl.common.utils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

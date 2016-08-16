@@ -4,9 +4,9 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.wyl.common.utils.Logger;
 import com.wyl.datasourceTM.dao.CustomerDAO;
 import com.wyl.datasourceTM.model.Customer;
-import com.wyl.datasourceTM.utils.Logger;
 
 public class CustomerDAOImpl implements CustomerDAO {
 

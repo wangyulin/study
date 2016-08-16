@@ -2,11 +2,11 @@ package com.wyl.datasourceTM.client;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.wyl.common.utils.Logger;
 import com.wyl.datasourceTM.model.Address;
 import com.wyl.datasourceTM.model.Customer;
 import com.wyl.datasourceTM.service.CustomerManager;
 import com.wyl.datasourceTM.service.impl.CustomerManagerImpl;
-import com.wyl.datasourceTM.utils.Logger;
 
 public class TransactionManagerMain_2 {
 
