@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wyl</groupId>
 	<artifactId>study</artifactId>
@@ -13,14 +14,15 @@
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<mysql.connector.java.version>5.1.30</mysql.connector.java.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<aspect.version>1.8.9</aspect.version>
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
 
 	<modules>
 		<module>datasourceTM</module>
-    <module>common</module>
-  </modules>
+		<module>common</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -53,6 +55,11 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
 				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${commons-dbcp.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.aspectj</groupId>
