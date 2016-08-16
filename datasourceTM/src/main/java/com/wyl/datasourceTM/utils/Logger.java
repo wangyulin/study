@@ -12,7 +12,7 @@ public class Logger {
 		log = LogFactory.getLog(this.getClass());
 	}
 
-	private Logger(Class c) {
+	private Logger(Class<? extends Logger> c) {
 		log = LogFactory.getLog(c);
 	}
 
@@ -24,8 +24,8 @@ public class Logger {
 		return new Logger();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Logger getLogger(Class c) {
-		
 		return new Logger(c);
 	}
 

@@ -6,9 +6,12 @@ import com.wyl.datasourceTM.model.Address;
 import com.wyl.datasourceTM.model.Customer;
 import com.wyl.datasourceTM.service.CustomerManager;
 import com.wyl.datasourceTM.service.impl.CustomerManagerImpl;
+import com.wyl.datasourceTM.utils.Logger;
 
 public class TransactionManagerMain_1 {
 
+	static Logger log = Logger.getLogger(TransactionManagerMain_1.class);
+	
 	private static final int id = 11;
 	
 	public static void main(String[] args) {
@@ -16,10 +19,14 @@ public class TransactionManagerMain_1 {
 				"file:///Users/wangyulin/workDir/miui/study/datasourceTM/src/main/resources/applicationContext_1.xml");
 
 		CustomerManager customerManager = ctx.getBean("customerManager",CustomerManagerImpl.class);
-
+		log.info("开始保存数据 ... ");
 		Customer cust = createDummyCustomer();
-		customerManager.createCustomer(cust);
-
+		try{
+			customerManager.createCustomer(cust);
+			log.info("数据保存成功 ！");
+		} catch (Exception e) {
+			log.error("数据保存异常 ！");
+		}
 		ctx.close();
 	}
 	
