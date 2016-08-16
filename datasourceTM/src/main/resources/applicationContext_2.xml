@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+        
+	<context:annotation-config />
+	
+	<!-- 配置不带连接池的数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://10.235.208.108:3306/demo?characterEncoding=utf-8" />  
+        <property name="username" value="root" />  
+        <property name="password" value="123456" />
+	</bean>
+	
+	 <!-- JDBC事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<!-- DataSource事务管理器需要数据源实例 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 以下是Spring容器管理的Bean -->
+	<bean id="customerDAO" class="com.wyl.datasourceTM.dao.impl.CustomerDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="customerManager" class="com.wyl.datasourceTM.service.impl.CustomerManagerImpl">
+		<property name="customerDAO" ref="customerDAO" />
+	</bean>
+
+	<!-- 第1步：定义事务通知(主要是针对指定事务管理器对应的事务实现配置事务参数) -->  
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">  
+        <tx:attributes>  
+            <!-- 对选定的方法配置详细的事务属性 -->  
+            <tx:method name="find*" read-only="true" />  
+            <tx:method name="create*" />
+        </tx:attributes>  
+    </tx:advice>
+    
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    
+    <!--  第2步：AOP配置 -->  
+    <aop:config>  
+        <!--  声明事务切入点(配置哪些类的哪些方法参与事务) -->   
+        <aop:pointcut id="AllServiceMethod"   
+                expression="execution(* com.wyl.datasourceTM.service.impl.*.*(..))" />   
+        <!-- 通知器(把事务通知绑定到切入点) -->  
+        <aop:advisor pointcut-ref="AllServiceMethod" advice-ref="txAdvice" />   
+    </aop:config>
+
+</beans>
