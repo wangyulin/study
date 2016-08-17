@@ -13,7 +13,7 @@ public class MyBaseObject {
         active = true;
         double it = Math.random();
         num = (int)(it * 1000);
-        System.out.println("new BaseObject");
+        System.out.println("new MyBaseObject");
     }
 
     public void setNum(int num) {

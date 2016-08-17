@@ -15,7 +15,8 @@ public class KeyPoolTest {
         MyBaseObject bo2 = null;
 
         KeyedPoolableObjectFactory<String, MyBaseObject> keyFactory = new TestKeyPoolableFactory();
-        GenericKeyedObjectPool<String, MyBaseObject> keyPool = new GenericKeyedObjectPool<String, MyBaseObject>(keyFactory);
+        GenericKeyedObjectPool<String, MyBaseObject> keyPool =
+                new GenericKeyedObjectPool<String, MyBaseObject>(keyFactory);
         //keyPool.setLifo(false);
         try {
             //这里添加池对象，只需要传入key就会默认调用makeObject()方法创建一个对象

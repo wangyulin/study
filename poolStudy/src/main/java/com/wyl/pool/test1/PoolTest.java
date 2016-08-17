@@ -12,6 +12,7 @@ public class PoolTest {
         MyBaseObject bo = null;
         PoolableObjectFactory factory = new TestPoolableFactory();
         GenericObjectPool pool = new GenericObjectPool(factory);
+        //pool.setMaxActive(1);
         //这里两种池都可以，区别下文会提到
         //ObjectPool pool = new StackObjectPool(factory);
         try {
@@ -23,10 +24,14 @@ public class PoolTest {
                 bo = (MyBaseObject)pool.borrowObject();
                 System.out.println("bo:" + bo);
                 System.out.println("池中所有在用实例数量pool.getNumActive()："+pool.getNumActive());
+                System.out.println("池中所有在用实例数量pool.getNumIdle()："+pool.getNumIdle());
+                
                 if((i%2) == 0) {
                     //用完之后归还对象
                     pool.returnObject(bo);
                     System.out.println("归还对象！！！！");
+                    System.out.println("--池中所有在用实例数量pool.getNumActive()："+pool.getNumActive());
+                    System.out.println("--池中所有在用实例数量pool.getNumIdle()："+pool.getNumIdle());
                 }
             }
         } catch (Exception e) {
