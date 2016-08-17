@@ -12,7 +12,12 @@ public class Demo {
         	@Override    
         	public Object makeObject(Object o) throws Exception { 
                         return o; 
-                } 
+                }
+
+            /*@Override
+            void destroyObject(Object key, Object obj) throws Exception {
+
+            }*/
         }); 
 
         //添加对象到池，重复的不会重复入池 
@@ -24,7 +29,9 @@ public class Demo {
         //清除最早的对象 
         pool.clearOldest(); 
 
-        pool.invalidateObject("c",null);
+        pool.invalidateObject("","");
+        pool.clear();
+        //pool.
 
         //获取并输出对象 
         System.out.println(pool.borrowObject("a")); 
