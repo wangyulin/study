@@ -11,7 +11,8 @@ public class MyBaseObject {
 
     public MyBaseObject(){
         active = true;
-        num = (int)Math.random() * 1000;
+        double it = Math.random();
+        num = (int)(it * 1000);
         System.out.println("new BaseObject");
     }
 
