@@ -29,5 +29,23 @@
 	<bean id="jsonMessageConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</bean>
+	
+	<!-- interceptor setting -->
+	<mvc:interceptors>
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<bean class="com.wyl.demo.server.interceptor.AllInterceptor" />
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.wyl.demo.server.interceptor.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<aop:aspectj-autoproxy/>
+	<aop:config>
+        <!-- Spring 2.0 可以用 AspectJ 的语法定义 Pointcut，这里拦截 service 包中的所有方法 -->
+        <aop:advisor id="methodTimeLog" advice-ref="methodTimeAdvice" pointcut="execution(* *..wyl..*(..))"/>
+    </aop:config>
+ 
+    <bean id="methodTimeAdvice" class="com.wyl.demo.server.interceptor.MethodTimeAdvice"/>
 
 </beans>
