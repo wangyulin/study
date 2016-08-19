@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.wyl.datasourceTM</groupId>
 	<artifactId>datasourceTM</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>datasourceTM</name>
 	<url>http://maven.apache.org</url>
