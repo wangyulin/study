@@ -24,5 +24,6 @@ server.pid
 .idea_modules/
 .ensime*
 logs/
+log/
 .DS_Store
 *~

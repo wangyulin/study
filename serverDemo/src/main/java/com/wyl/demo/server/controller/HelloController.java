@@ -1,6 +1,8 @@
 package com.wyl.demo.server.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -70,6 +72,17 @@ public class HelloController {
 	@ResponseBody
 	public Student findOne(@RequestBody Student stu) {
 		return stuStore.get(stu.getName());
+	}
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Student> find() {
+		List<Student> result = new ArrayList<Student>();
+		for(String key : stuStore.keySet()) {
+			result.add(stuStore.get(key));
+		}
+		System.out.println(result);
+		return result;
 	}
 	
 	@RequestMapping(value = "/findOne/v2", method = RequestMethod.POST)

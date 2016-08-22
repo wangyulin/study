@@ -25,7 +25,7 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
 	@SuppressWarnings("unused")
 	private final static Logger CONSOLE_LOGGER = LoggerFactory.getLogger(HelloController.class); 
 	
-	private String _body;
+	private StringBuffer _body;
 
 	public MultiReadHttpServletRequest(HttpServletRequest request) throws IOException {
 		super(request);
@@ -42,13 +42,13 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
         if(HttpMethod.POST.toString().equalsIgnoreCase(req.getMethod()) 
         		|| HttpMethod.PUT.toString().equalsIgnoreCase(req.getMethod())) {
         	/** 处理POST、PUT请求的body数据 */
-        	_body = "";
+        	_body = new StringBuffer();
     		BufferedReader bufferedReader = request.getReader();
     		String line;
     		while ((line = bufferedReader.readLine()) != null) {
-    			_body += line;
+    			_body.append(line);
     		}
-    		LOGGER.info("\n\tURL : {}\n\tHeaders : {}\n\tMethod : {}\n\tBody : {}\n",url, headers, req.getMethod(), _body.replaceAll("\\s*", ""));
+    		LOGGER.info("\n\tURL : {}\n\tHeaders : {}\n\tMethod : {}\n\tBody : {}\n",url, headers, req.getMethod(), _body.toString().replaceAll("\\s*", ""));
         	
         } else if("GET".equalsIgnoreCase(req.getMethod())) {
         	/** 处理GET请求的数据 */
@@ -58,7 +58,7 @@ public class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
 
 	@Override
 	public ServletInputStream getInputStream() throws IOException {
-		final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(_body.getBytes());
+		final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(_body.toString().getBytes());
 		return new ServletInputStream() {
 			public int read() throws IOException {
 				return byteArrayInputStream.read();
