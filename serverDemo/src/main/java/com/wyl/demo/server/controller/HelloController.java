@@ -77,11 +77,16 @@ public class HelloController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Student> find() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<Student> result = new ArrayList<Student>();
 		for(String key : stuStore.keySet()) {
 			result.add(stuStore.get(key));
 		}
-		System.out.println(result);
 		return result;
 	}
 	

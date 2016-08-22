@@ -43,7 +43,8 @@
 	<aop:aspectj-autoproxy/>
 	<aop:config>
         <!-- Spring 2.0 可以用 AspectJ 的语法定义 Pointcut，这里拦截 service 包中的所有方法 -->
-        <aop:advisor id="methodTimeLog" advice-ref="methodTimeAdvice" pointcut="execution(* *..wyl..*(..))"/>
+        <aop:advisor id="methodTimeLog" advice-ref="methodTimeAdvice" 
+        pointcut="execution(* *..wyl..*(..)) and !execution(* com.wyl.demo.server.interceptor..*.*(..))"/>
     </aop:config>
  
     <bean id="methodTimeAdvice" class="com.wyl.demo.server.interceptor.MethodTimeAdvice"/>
