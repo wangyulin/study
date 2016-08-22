@@ -4,12 +4,15 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
  
 /**
  * 记录方法的执行时间
  * @author wangyulin
  */
 public class MethodTimeAdvice implements MethodInterceptor {
+	
     protected final Log log = LogFactory.getLog(MethodTimeAdvice.class);
  
     /**

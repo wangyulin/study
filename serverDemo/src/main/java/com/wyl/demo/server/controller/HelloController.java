@@ -3,6 +3,8 @@ package com.wyl.demo.server.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,8 @@ import com.wyl.demo.server.module.Student;
 @RestController
 public class HelloController {
 	
+	private final static Logger LOGGER = LoggerFactory.getLogger(HelloController.class); 
+	
 	private static Map<String,String> map = new HashMap<String,String>();
 	private static Map<String,Student> stuStore = new HashMap<String,Student>();
 	static{
@@ -28,11 +32,11 @@ public class HelloController {
 		map.put("v4","v4 String");
 		
 		Student stu1 = new Student("001","Mary",20);
-		stuStore.put("Mary", stu1);
+		stuStore.put("001", stu1);
 		Student stu2 = new Student("002","Tom",21);
-		stuStore.put("Tom", stu2);
+		stuStore.put("002", stu2);
 		Student stu3 = new Student("003","Jersey",28);
-		stuStore.put("Jersey", stu3);
+		stuStore.put("003", stu3);
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -71,7 +75,21 @@ public class HelloController {
 	@RequestMapping(value = "/findOne/v2", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Student> findOne_v2(@RequestBody Student stu) {
-		return new ResponseEntity<Student>(stuStore.get(stu.getName()), HttpStatus.OK);
+		Student result = stuStore.get(stu.getId());
+		LOGGER.info("result : {}", result);
+		return new ResponseEntity<Student>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/student/{id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<Student> updateStu(@PathVariable String id, @RequestBody Student stu) {
+		Student result = stuStore.get(id);
+		if(result != null) {
+			stuStore.put(id, stu);
+			return new ResponseEntity<Student>(stuStore.get(id), HttpStatus.ACCEPTED);
+		} else {
+			return new ResponseEntity<Student>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 }

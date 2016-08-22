@@ -2,6 +2,10 @@ package com.wyl.demo.server.module;
 
 public class Student {
 	
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", age=" + age + "]";
+	}
 	private String id;
 	private String name;
 	private int age;
@@ -32,4 +36,5 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
 }

@@ -3,11 +3,15 @@ package com.wyl.demo.server.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 public class MyInterceptor implements HandlerInterceptor {
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(MyInterceptor.class); 
+	
 	/** 
      * preHandle方法是进行处理器拦截用的，顾名思义，该方法将在Controller处理之前进行调用，
      * SpringMVC中的Interceptor拦截器是链式的，可以同时存在 
@@ -19,8 +23,8 @@ public class MyInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object arg2) throws Exception {
 		long startTime = System.currentTimeMillis();
-        request.setAttribute("startTime", startTime);
-        System.out.println("MyInterceptor.preHandle");
+		//LOGGER.info("startTime", startTime);
+		//LOGGER.info("MyInterceptor.preHandle");
         return true;
     }
 	
@@ -33,7 +37,7 @@ public class MyInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, 
     		Object arg2, Exception arg3)
             throws Exception {
-        System.out.println("MyInterceptor.afterCompletion");
+    	//LOGGER.info("MyInterceptor.afterCompletion");
     }
 
     /** 
@@ -46,11 +50,10 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
             Object arg2, ModelAndView arg3) throws Exception {
-    	long startTime = (Long)request.getAttribute("startTime");
-        long endTime = System.currentTimeMillis();
-        long executeTime = endTime - startTime;
-        
-        System.out.println("MyInterceptor.postHandle :" + executeTime);
+//    	long startTime = (Long)request.getAttribute("startTime");
+//        long endTime = System.currentTimeMillis();
+//        long executeTime = endTime - startTime;
+//        LOGGER.info("MyInterceptor.postHandle :" + executeTime);
     }
 
 }

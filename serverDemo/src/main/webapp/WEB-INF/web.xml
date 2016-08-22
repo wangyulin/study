@@ -6,6 +6,14 @@
 
 	<display-name>Archetype Created Web Application</display-name>
 
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>classpath:Logback.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -20,6 +28,16 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<filter>
+		<filter-name>accessLog</filter-name>
+		<filter-class>com.wyl.demo.server.filter.RequestWrapperFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	   <filter-name>accessLog</filter-name>
+	   <url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
