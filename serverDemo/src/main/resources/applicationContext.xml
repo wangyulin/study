@@ -13,6 +13,8 @@
 	<context:component-scan base-package="com.wyl.demo.server" />
 	<context:annotation-config />
 	<mvc:annotation-driven />
+	
+	<mvc:resources mapping="/views/**" location="/views/" /> 
 
 	<!-- for processing requests with annotated controller methods and set Message 
 		Convertors from the list of convertors -->

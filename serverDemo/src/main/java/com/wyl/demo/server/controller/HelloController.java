@@ -110,4 +110,18 @@ public class HelloController {
 		}
 	}
 	
+	@RequestMapping(value = "/getClassInfo/{clazz}", method = RequestMethod.GET)
+	@ResponseBody
+	public String getClassInfo(@PathVariable String clazz) {
+		System.out.println(clazz);
+		Class<?> onwClass;
+		try {
+			onwClass = Class.forName(clazz);
+			return onwClass.getProtectionDomain().getCodeSource().getLocation().getPath();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
 }
