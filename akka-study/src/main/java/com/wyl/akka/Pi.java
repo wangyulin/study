@@ -13,10 +13,11 @@ public class Pi {
 
 	public static void main(String[] args) {
 		Pi pi = new Pi();
-		pi.calculate(4, 10000, 10000);
+		pi.calculate(4, 1000, 10000);
 	}
 
 	static class Calculate {
+		
 	}
 
 	static class Work {
@@ -143,6 +144,12 @@ public class Pi {
 		}
 	}
 
+	/**
+	 * 
+	 * @param nrOfWorkers  定义多少工人
+	 * @param nrOfElements 定义块发送给每个工人数量有多大
+	 * @param nrOfMessages 定义多少块数量发送给工人
+	 */
 	public void calculate(final int nrOfWorkers, final int nrOfElements, final int nrOfMessages) {
 		// Create an Akka system
 		ActorSystem system = ActorSystem.create("PiSystem");
