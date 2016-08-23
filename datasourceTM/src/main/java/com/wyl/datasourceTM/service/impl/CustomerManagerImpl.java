@@ -14,7 +14,6 @@ public class CustomerManagerImpl implements CustomerManager {
 		this.customerDAO = customerDAO;
 	}
 
-	@Override
 	@Transactional(rollbackFor={Exception.class})
 	public void createCustomer(Customer cust) {
 		customerDAO.create(cust);

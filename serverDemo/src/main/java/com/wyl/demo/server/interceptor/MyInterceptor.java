@@ -19,8 +19,7 @@ public class MyInterceptor implements HandlerInterceptor {
      * Controller方法调用之前调用。SpringMVC的这种Interceptor链式结构也是可以进行中断的，这种中断方式是令preHandle的返 
      * 回值为false，当preHandle的返回值为false的时候整个请求就结束了。 
      */
-	@Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
             Object arg2) throws Exception {
 		long startTime = System.currentTimeMillis();
 		//LOGGER.info("startTime", startTime);
@@ -33,7 +32,6 @@ public class MyInterceptor implements HandlerInterceptor {
      * 也就是DispatcherServlet渲染了视图执行， 
      * 这个方法的主要作用是用于清理资源的，当然这个方法也只能在当前这个Interceptor的preHandle方法的返回值为true时才会执行。 
      */
-    @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, 
     		Object arg2, Exception arg3)
             throws Exception {
@@ -47,7 +45,6 @@ public class MyInterceptor implements HandlerInterceptor {
      * 只是Struts2里面的intercept方法中要手动的调用ActionInvocation的invoke方法，Struts2中调用ActionInvocation的invoke方法就是调用下一个Interceptor 
      * 或者是调用action，然后要在Interceptor之前调用的内容都写在调用invoke之前，要在Interceptor之后调用的内容都写在调用invoke方法之后。 
      */	
-    @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
             Object arg2, ModelAndView arg3) throws Exception {
 //    	long startTime = (Long)request.getAttribute("startTime");
