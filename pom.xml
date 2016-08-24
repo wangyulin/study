@@ -27,6 +27,7 @@
 		<logback.version>1.1.2</logback.version>
 		<org.logback-extensions.version>0.1.2</org.logback-extensions.version>
 		<akka.version>2.0.2</akka.version>
+		<thrift.version>0.9.1</thrift.version>
 	</properties>
 
 	<modules>
@@ -36,6 +37,7 @@
 		<module>httpclient-demo</module>
 		<module>serverDemo</module>
 		<module>akka-study</module>
+		<module>backend-service</module>
 	</modules>
 
 	<dependencyManagement>
@@ -132,6 +134,11 @@
 				<version>${httpclient.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.thrift</groupId>
+				<artifactId>libthrift</artifactId>
+				<version>${thrift.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
 				<version>${log4j.version}</version>
@@ -180,27 +187,27 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<repositories>
-        <repository>
-            <id>typesafe</id>
-            <name>Typesafe Repository</name>
-            <url>http://repo.typesafe.com/typesafe/releases/</url>
-        </repository>
-    </repositories>
-	
+		<repository>
+			<id>typesafe</id>
+			<name>Typesafe Repository</name>
+			<url>http://repo.typesafe.com/typesafe/releases/</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<finalName>study</finalName>
-		<plugins>  
-        <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <configuration>  
-                <source>1.8</source>  
-                <target>1.8</target>  
-            </configuration>  
-        </plugin>  
-    </plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>

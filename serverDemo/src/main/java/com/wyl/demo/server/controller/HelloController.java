@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wyl.backend.service.Hello;
 import com.wyl.demo.server.module.Student;
+import com.wyl.demo.server.utils.ThriftUtil;
 
 @RequestMapping("/hello")
 @RestController
 public class HelloController {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(HelloController.class); 
+	
+	private Hello.Client helloClient = ThriftUtil.getClient();
 	
 	private static Map<String,String> map = new HashMap<String,String>();
 	private static Map<String,Student> stuStore = new HashMap<String,Student>();
@@ -44,6 +49,7 @@ public class HelloController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	@ResponseBody
 	public Object hello() {
+		
 		Map<String,String> result = new HashMap<String,String>();
 		result.put("A", "1234");
 		result.put("B", "9876");
@@ -52,7 +58,10 @@ public class HelloController {
 	
 	@RequestMapping(value = "/{firstName}", method = RequestMethod.GET)
 	@ResponseBody
-	public Object hello_v2(@PathVariable String firstName) {
+	public Object hello_v2(@PathVariable String firstName) throws TException {
+		ThreadLocal<Integer> id = new ThreadLocal<Integer>();
+		id.set(100);
+		helloClient.helloString(firstName);
 		return "Hello "+ firstName;
 	}
 	
