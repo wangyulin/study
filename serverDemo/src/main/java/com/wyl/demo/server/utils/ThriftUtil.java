@@ -10,6 +10,8 @@ import com.wyl.backend.service.Hello;
 
 public class ThriftUtil {
 	
+	ThreadLocal<TSocket> socketThreadLocalSafe = new ThreadLocal<TSocket>();
+	
 	public ThriftUtil(){
 	
 	}

@@ -7,11 +7,12 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.apache.thrift.transport.TTransportException;
 
+import com.wyl.backend.exception.CatchableException;
+
 public class ThriftDemo {
 
 	public static final int SERVER_PORT = 8090;
 	
-	@SuppressWarnings({ "rawtypes" })
 	public static void main(String[] args) {
 		try {
             // 设置调用的服务地址为本地，端口为 9527
@@ -19,12 +20,16 @@ public class ThriftDemo {
             transport.open();
             // 设置传输协议为 TBinaryProtocol
             TProtocol protocol = new TBinaryProtocol(transport);
-            Hello.Client client = new Hello.Client(protocol);
+            //Hello.Client client = new Hello.Client(protocol);
             // 调用服务的 helloVoid 方法
-            client.send_helloString("World !");
-
+            //System.out.println(client.helloString("World !"));
+            //client.helloNull();
+            
+            StudentService.Client stuClient = new StudentService.Client(protocol);
+            System.out.println(stuClient.findAllStudents());
+            
             transport.close();
-        } catch (TTransportException e) {
+        } catch (CatchableException e) {
             e.printStackTrace();
         } catch (TException e) {
             e.printStackTrace();
