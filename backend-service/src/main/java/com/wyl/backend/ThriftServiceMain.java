@@ -1,5 +1,6 @@
 package com.wyl.backend;
 
+import com.wyl.backend.exception.CatchableException;
 import com.wyl.backend.service.StudentService;
 import com.wyl.backend.service.impl.StudentServiceImpl;
 import org.apache.thrift.TProcessor;

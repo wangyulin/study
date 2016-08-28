@@ -515,6 +515,16 @@ public class Student implements org.apache.thrift.TBase<Student, Student._Fields
 
   @Override
   public String toString() {
+    return "{" +
+            "\"id\": \"" + id +
+            "\"; \"name\": \"" + name +
+            "\"; \"gender\": \"" + gender +
+            "\"; \"age\": \"" + age +
+            "\"}";
+  }
+
+  /*@Override
+  public String toString() {
     StringBuilder sb = new StringBuilder("Student(");
     boolean first = true;
 
@@ -543,7 +553,7 @@ public class Student implements org.apache.thrift.TBase<Student, Student._Fields
     first = false;
     sb.append(")");
     return sb.toString();
-  }
+  }*/
 
   public void validate() throws org.apache.thrift.TException {
     // check for required fields
