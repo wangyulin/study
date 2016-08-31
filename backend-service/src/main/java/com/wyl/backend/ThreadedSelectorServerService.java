@@ -10,10 +10,12 @@ import org.apache.thrift.transport.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.Buffer;
 
-public class ThriftServiceMain {
 
-    private static Logger logger = LoggerFactory.getLogger(ThriftServiceMain.class);
+public class ThreadedSelectorServerService {
+
+    private static Logger logger = LoggerFactory.getLogger(ThreadedSelectorServerService.class);
 
 	public static void main(String[] args) {
 		try {
@@ -44,6 +46,9 @@ public class ThriftServiceMain {
 
             /** 启动server */
             server.serve();
+
+            Buffer buffer;
+
         } catch (TTransportException e) {
             e.printStackTrace();
         }
