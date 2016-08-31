@@ -12,6 +12,7 @@
 	<artifactId>backend-service</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<name>backend-service</name>
+	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 
 	<properties>

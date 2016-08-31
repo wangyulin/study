@@ -1,39 +1,51 @@
 package com.wyl.backend;
 
-import com.wyl.backend.exception.CatchableException;
-import com.wyl.backend.service.StudentService;
-import com.wyl.backend.service.impl.StudentServiceImpl;
-import org.apache.thrift.TProcessor;
-import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TThreadPoolServer;
-import org.apache.thrift.transport.TSSLTransportFactory;
-import org.apache.thrift.transport.TServerSocket;
-import org.apache.thrift.transport.TTransportException;
-
 import com.wyl.backend.service.Hello;
 import com.wyl.backend.service.impl.HelloServiceImpl;
+import org.apache.thrift.TProcessor;
+import org.apache.thrift.protocol.TJSONProtocol;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TThreadedSelectorServer;
+import org.apache.thrift.transport.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class ThriftServiceMain {
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+    private static Logger logger = LoggerFactory.getLogger(ThriftServiceMain.class);
+
 	public static void main(String[] args) {
 		try {
-            TSSLTransportFactory.TSSLTransportParameters config = new TSSLTransportFactory.TSSLTransportParameters();
-            config.setKeyStore("../.keystore","keyPass");
-            // 设置服务端口为 9527 
-            TServerSocket serverTransport = new TServerSocket(9527);
-            // 关联处理器与 Hello 服务的实现
-            //TProcessor processor = new Hello.Processor(new HelloServiceImpl());
-            //TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
+            /** 设置服务端口为 9527*/
+            TNonblockingServerTransport transport = new TNonblockingServerSocket(9527);
 
-            TProcessor stuProcessor = new StudentService.Processor(new StudentServiceImpl());
-            TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(stuProcessor));
+            /** 定义处理器*/
+            TProcessor helloProcessor = new Hello.Processor<Hello.Iface>(new HelloServiceImpl());
+            //TProcessor processor_stu = new StudentService.Processor(new StudentServiceImpl());
 
-            System.out.println("Start server on port 9527...");
+            /** 定义传输工厂(默认使用的是：)*/
+            TTransportFactory transportFactory = new TFramedTransport.Factory();
+
+            /** 定义协议工厂(默认使用的是：TBinaryProtocol) */
+            TJSONProtocol.Factory protocolFactory = new TJSONProtocol.Factory();
+
+            /** 定义server参数对象*/
+            TThreadedSelectorServer.Args tArgs = new TThreadedSelectorServer.Args(transport);
+
+            /** 指定该server使用 的 传输，传输协议，业务处理器*/
+            tArgs.processor(helloProcessor);
+            tArgs.transportFactory(transportFactory);
+            tArgs.protocolFactory(protocolFactory);
+
+            TServer server = new TThreadedSelectorServer(tArgs);
+
+            logger.info("Start server on port 9527...");
+
+            /** 启动server */
             server.serve();
         } catch (TTransportException e) {
             e.printStackTrace();
         }
 	}
-
 }

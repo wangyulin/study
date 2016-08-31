@@ -13,6 +13,7 @@
 	<artifactId>poolStudy</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<name>poolStudy</name>
+	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 
 	<properties>

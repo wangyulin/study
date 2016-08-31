@@ -19,13 +19,13 @@ public class ThriftDemo {
             transport.open();
             // 设置传输协议为 TBinaryProtocol
             TProtocol protocol = new TBinaryProtocol(transport);
-            //Hello.Client client = new Hello.Client(protocol);
+            Hello.Client client = new Hello.Client(protocol);
             // 调用服务的 helloVoid 方法
-            //System.out.println(client.helloString("World !"));
+            System.out.println(client.helloString("World !"));
             //client.helloNull();
             
-            StudentService.Client stuClient = new StudentService.Client(protocol);
-            System.out.println(stuClient.findAllStudents());
+           // StudentService.Client stuClient = new StudentService.Client(protocol);
+            //System.out.println(stuClient.findAllStudents());
             
             transport.close();
         } catch (CatchableException e) {
