@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.2.RELEASE</spring.version>
-		<mysql.connector.java.version>5.1.30</mysql.connector.java.version>
+		<mysql.connector.java.version>5.1.39</mysql.connector.java.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<aspect.version>1.8.9</aspect.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -28,6 +28,7 @@
 		<org.logback-extensions.version>0.1.2</org.logback-extensions.version>
 		<akka.version>2.0.2</akka.version>
 		<thrift.version>0.9.3</thrift.version>
+		<hadoop.version>2.7.3</hadoop.version>
 	</properties>
 
 	<modules>
@@ -38,6 +39,7 @@
 		<module>serverDemo</module>
 		<module>akka-study</module>
 		<module>backend-service</module>
+		<module>hadoop-demo</module>
 	</modules>
 
 	<dependencyManagement>
@@ -178,6 +180,21 @@
 				<groupId>com.typesafe.akka</groupId>
 				<artifactId>akka-actor</artifactId>
 				<version>${akka.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-common</artifactId>
+				<version>${hadoop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-hdfs</artifactId>
+				<version>${hadoop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-client</artifactId>
+				<version>${hadoop.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
