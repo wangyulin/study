@@ -21,7 +21,7 @@ import org.apache.hadoop.util.Progressable;
 
 public class Hadoop_LS {
 
-	public static String ip = "10.235.152.23";
+	public static String ip = "wangyulin-test-host";
 	public static String hdfsUri = String.format("hdfs://%s:9000", ip);
 
 	public static Configuration initConf() {
@@ -35,13 +35,29 @@ public class Hadoop_LS {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		//put();
 		//list();
+		globStatus("/test/");
 		//getHDFSNode();
 		//getHDFSNode1();
 		//createDir();
 		//deleDir();
 		//writeFile();
-		readFile();
+		//readFile();
 		//uploadFile();
+	}
+	
+	public static void moveTo() throws IOException {
+		Configuration conf = initConf();  
+        FileSystem fs = FileSystem.get(conf);
+        
+	}
+	
+	public static void globStatus(String path) throws IOException {
+		Configuration conf = initConf();  
+        FileSystem fs = FileSystem.get(conf);
+        FileStatus[] res = fs.globStatus(new Path(path));
+        for(int i = 0; i < res.length; i++) {
+        	System.out.println(res[i].getPath().getName());
+        }
 	}
 	
 	public static void uploadFile() throws IOException {

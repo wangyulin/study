@@ -10,7 +10,7 @@ public class CounterUtils {
 	
 	private static JedisCluster client = RedisConnectionFactory.getRedisClient();
 	
-	private static SimpleDateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd");
+	private static SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static String serverNameListKey = "host_list";
 	
