@@ -11,7 +11,7 @@ public class RedisConnectionFactory {
 	
 	private static JedisCluster jedisCluster = null;
 	
-	private static String urls = "192.168.1.111:6379;wangyulin-test-host:6380;wangyulin-test-host:6381;wangyulin-test-host:6382;wangyulin-test-host:6383;wangyulin-test-host:6384";
+	private static String urls = "wangyulin-test-host:6379;wangyulin-test-host:6380;wangyulin-test-host:6381;wangyulin-test-host:6382;wangyulin-test-host:6383;wangyulin-test-host:6384";
 	//192.168.1.111:6379;wangyulin-test-host:6380;wangyulin-test-host:6381;wangyulin-test-host:6382;wangyulin-test-host:6383;wangyulin-test-host:6384
 	//wangyulin-test-host:30001;wangyulin-test-host:30002;wangyulin-test-host:30003;wangyulin-test-host:30004;wangyulin-test-host:30005;wangyulin-test-host:30006
 	
@@ -32,9 +32,6 @@ public class RedisConnectionFactory {
         //conf.setTestWhileIdle(false);
         //conf.setTestOnReturn(false);
         
-        int scoketTimeout = 3000;
-        int maxRedirections = 5;
-        
         jedisCluster = new JedisCluster(nodes);
      }
 	
@@ -44,6 +41,7 @@ public class RedisConnectionFactory {
 	
 	public static void main(String [] args) {
 		System.out.println(jedisCluster.get("w1"));
+		jedisCluster.getClusterNodes();
 		jedisCluster.incr("w1".getBytes());
 		System.out.println(jedisCluster.get("w1"));
 	}

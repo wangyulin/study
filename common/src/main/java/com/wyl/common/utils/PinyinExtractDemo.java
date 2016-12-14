@@ -10,7 +10,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 public class PinyinExtractDemo {
 
 	public static void main(String[] args) {
-		System.out.println(getPingYin("长沙"));
+		
 	}
 
 	/**
