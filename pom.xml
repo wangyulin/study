@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.wyl</groupId>
 	<artifactId>study</artifactId>
@@ -33,6 +34,7 @@
 		<kafka.version>0.10.0.1</kafka.version>
 		<json-lib.version>2.4</json-lib.version>
 		<jedis.version>2.9.0</jedis.version>
+		<zookeeper.version>3.4.8</zookeeper.version>
 	</properties>
 
 	<modules>
@@ -46,8 +48,8 @@
 		<module>hadoop-demo</module>
 		<module>kafka-demo</module>
 		<module>study-utils</module>
-    <module>zookeeper-demo</module>
-  </modules>
+		<module>zookeeper-demo</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -239,6 +241,11 @@
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
 				<version>${jedis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
