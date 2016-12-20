@@ -9,15 +9,19 @@ import org.apache.zookeeper.ZooKeeper;
 public class Server {
 	private String pnode="zk_test_1";
 	private String snode="sub";
-	private String host="wangyulin-test-host:2181";
+	private String host="wangyulin-test-host:2181,wangyulin-test-host:2182,wangyulin-test-host:2183";
 	public void connect(String content) throws Exception {
 		ZooKeeper zk=new ZooKeeper(host,5000,new Watcher(){
 			public void process(WatchedEvent event){
 				//no process
 			}
 		});
+        zk.addAuthInfo ( "", "".getBytes () );
+		System.out.println("status :" + zk.getState ());
 		String createdPath=zk.create("/"+pnode+"/"+snode, content.getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 		System.out.println("create :"+createdPath);
+		System.out.println("sessionId :" + zk.getSessionId ());
+
 	}
 	public void handle() throws InterruptedException{
 		Thread.sleep(Long.MAX_VALUE);

@@ -13,7 +13,7 @@ import org.apache.zookeeper.ZooKeeper;
 public class Client2 {
 	private String pnode = "zk_test_1";
 	private String conf = "conf";
-	private String host = "wangyulin-test-host:2181";
+	private String host = "wangyulin-test-host:2181,wangyulin-test-host:2182,wangyulin-test-host:2183";
 	private ZooKeeper zk;
 	private List<String> serverList = new ArrayList<String>();
 
