@@ -5,6 +5,7 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
+import org.apache.zookeeper.proto.WatcherEvent;
 
 public class Server {
 	private String pnode="zk_test_1";
@@ -16,7 +17,7 @@ public class Server {
 				//no process
 			}
 		});
-        zk.addAuthInfo ( "", "".getBytes () );
+
 		System.out.println("status :" + zk.getState ());
 		String createdPath=zk.create("/"+pnode+"/"+snode, content.getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 		System.out.println("create :"+createdPath);

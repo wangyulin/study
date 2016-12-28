@@ -8,10 +8,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.Counter;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -107,6 +104,16 @@ public class OrderStat {
 		// 如果等待任务完成，当正常完成时返回true，反之false
 		//System.exit(job.waitForCompletion(true) ? 0 : 1);
 		boolean result = job.waitForCompletion(true);
+		Counters counters = job.getCounters ();
+		for (CounterGroup group : counters) {
+			System.out.println("==========================================================");
+			System.out.println("* Counter Group: " + group.getDisplayName() + " (" + group.getName() + ")");
+			System.out.println("  number of counters in this group: " + group.size());
+			for (Counter counter : group) {
+				System.out.println("  ++++ " + counter.getDisplayName() + ": " + counter.getName() + ": "
+						+ counter.getValue());
+			}
+		}
 		System.out.println("MapReduce 执行结果 :" + result);
 	}
 }
