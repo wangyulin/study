@@ -43,6 +43,7 @@ public class Demo {
 		for(int i = 0; i < 22; i++ ) {
 			Thread t = new Thread(new Task(hosts.get(i),cal));
 			t.start();
+			t.yield ();
 		}
 		
 	}

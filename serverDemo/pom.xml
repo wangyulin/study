@@ -17,6 +17,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.wyl</groupId>
+			<artifactId>backend-service</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
@@ -81,11 +86,20 @@
 			<artifactId>logback-ext-spring</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.thrift</groupId>
+			<artifactId>libthrift</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.wyl</groupId>
+            <artifactId>backend-service</artifactId>
+            <version>0.0.2-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<finalName>serverDemo</finalName>

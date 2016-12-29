@@ -26,6 +26,7 @@ public class WordCount {
 		//conf.set("mapred.jop.tracker", "hdfs://10.235.152.23:9001");
 		conf.set("fs.default.name", hdfsUri);// 改配置没有是读文件读取不到内容
 		conf.set("dfs.replication", "1");
+		conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
 		return conf;
 	}
 
@@ -42,6 +43,7 @@ public class WordCount {
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
 			// 对文本分词（tokenizing）
 			StringTokenizer itr = new StringTokenizer(value.toString());
+			System.out.println("key : " + key + " ;" + " value : " + value);
 			while (itr.hasMoreTokens()) {
 				word.set(itr.nextToken());
 				// context可以简单看作是mapper运行环境的封装（存储输出等）
@@ -67,6 +69,7 @@ public class WordCount {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception {
+		Thread.State state;
 		// 用来生成一些MapReduce的默认参数
 		Configuration conf = initConf();
 		FileSystem fs = FileSystem.get(conf);
