@@ -1,0 +1,39 @@
+package com.wyl.thread.suspend;
+
+/**
+ * Created by wangyulin on 30/12/2016.
+ */
+public class BadSuspend {
+
+    public static Object u = new Object ();
+
+    static ChangeObjectThread t1 = new ChangeObjectThread ( "t1" );
+    static ChangeObjectThread t2 = new ChangeObjectThread ( "t2" );
+
+    public static class ChangeObjectThread extends Thread {
+
+        public ChangeObjectThread(String name) {
+            super.setName (name);
+        }
+
+        public void run() {
+            synchronized (u) {
+                System.out.println ("in " + getName ());
+                Thread.currentThread ().suspend ();
+            }
+        }
+
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        t1.start ();
+        Thread.sleep ( 5000 );
+        t2.start ();
+        t1.resume ();
+        t2.resume ();
+        t1.join ();
+        t2.join ();
+        System.out.println ("Hello");
+    }
+
+}
