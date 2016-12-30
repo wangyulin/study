@@ -23,7 +23,6 @@ public class DeamonDemo {
         t.setDaemon ( true );//必须要在start之前设置
         t.start ();
         Thread.sleep ( 2000 );
-
     }
 
 }

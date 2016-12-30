@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 多线程操作发现，目前不能保证i自增不能保证原子性
  */
 public class MutilThreadLong {
+    public static Object obj = new Object();
     public volatile static int i = 0;
     public static AtomicInteger one = new AtomicInteger ( 0 );
 
@@ -14,7 +15,9 @@ public class MutilThreadLong {
         public void run() {
             int k = 0;
             for(k = 0; k < 10000; k++) {
-                i++;
+                synchronized (obj) {
+                    i++;
+                }
                 one.incrementAndGet ();
             }
             System.out.println (Thread.currentThread ().getName () + " k :" + k);
@@ -32,6 +35,7 @@ public class MutilThreadLong {
         }
         System.out.println (i);
         System.out.println ("one : " + one.get ());
+        System.out.println (Integer.MAX_VALUE);
     }
 
 }
