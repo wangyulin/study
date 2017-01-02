@@ -20,9 +20,15 @@ public class CyclicBarrierDemo {
 
         public void run() {
             try {
+                //等待所有士兵到齐
+                System.out.println ("等待await的目前的总量: " + cyclic.getNumberWaiting ());
                 cyclic.await ();
+                //System.out.println ("第一次await");
                 doWork ();
+                //等待所有士兵完成工作
+                System.out.println ("--等待await的目前的总量: " + cyclic.getNumberWaiting ());
                 cyclic.await ();
+                //System.out.println ("第二次await");
             } catch (InterruptedException e) {
                 e.printStackTrace ();
             } catch (BrokenBarrierException e) {
