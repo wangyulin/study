@@ -11,6 +11,10 @@ public class ThreadPoolDemo {
     public static class MyTask implements Runnable {
         public void run() {
             System.out.println (System.currentTimeMillis () + " : Thread ID : " + Thread.currentThread ().getId ());
+            ThreadLocal<String> local = new ThreadLocal<String> ();
+            local.set ( Thread.currentThread ().getName () );
+            local.set ( Thread.currentThread ().getName () + "-RE" );
+            System.out.println (local.get ());
             try {
                 Thread.sleep ( 1000 );
             } catch (InterruptedException e) {
