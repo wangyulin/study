@@ -41,7 +41,7 @@ public class Demo2 {
                 getRandom ().nextInt ();
             }
             long e = System.currentTimeMillis ();
-            System.out.println (Thread.currentThread ().getName () + " e - b");
+            System.out.println (Thread.currentThread ().getName () + (e - b));
             return e - b;
         }
 
@@ -64,6 +64,7 @@ public class Demo2 {
             }
 
             totaltime = 0;
+
 
             for (int i = 0; i < THREAD_COUNT; i++) {
                 totaltime+=futs[i].get ();
