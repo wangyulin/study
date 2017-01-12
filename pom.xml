@@ -27,7 +27,7 @@
 		<slf4j.version>1.7.21</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<org.logback-extensions.version>0.1.2</org.logback-extensions.version>
-		<akka.version>2.0.2</akka.version>
+		<akka.version>2.4.16</akka.version>
 		<thrift.version>0.9.3</thrift.version>
 		<hadoop.version>2.7.3</hadoop.version>
 		<hive.version>2.0.0</hive.version>
@@ -49,6 +49,7 @@
 		<module>kafka-demo</module>
 		<module>study-utils</module>
 		<module>zookeeper-demo</module>
+		<module>springbootdemo</module>
 	</modules>
 
 	<dependencyManagement>
@@ -192,7 +193,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.typesafe.akka</groupId>
-				<artifactId>akka-actor</artifactId>
+				<artifactId>akka-actor_2.11</artifactId>
 				<version>${akka.version}</version>
 			</dependency>
 			<dependency>

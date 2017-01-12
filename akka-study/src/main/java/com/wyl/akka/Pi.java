@@ -1,17 +1,17 @@
 package com.wyl.akka;
 
-import akka.actor.ActorRef;
+/*import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.actor.UntypedActorFactory;
 import akka.routing.RoundRobinRouter;
 import akka.util.Duration;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit;*/
 
 public class Pi {
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Pi pi = new Pi();
 		pi.calculate(4, 1000, 10000);
 	}
@@ -144,12 +144,12 @@ public class Pi {
 		}
 	}
 
-	/**
+	*//**
 	 * 
 	 * @param nrOfWorkers  定义多少工人
 	 * @param nrOfElements 定义块发送给每个工人数量有多大
 	 * @param nrOfMessages 定义多少块数量发送给工人
-	 */
+	 *//*
 	public void calculate(final int nrOfWorkers, final int nrOfElements, final int nrOfMessages) {
 		// Create an Akka system
 		ActorSystem system = ActorSystem.create("PiSystem");
@@ -168,5 +168,5 @@ public class Pi {
 		// start the calculation
 		master.tell(new Calculate());
 
-	}
+	}*/
 }
