@@ -13,8 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
  */
 
 @Configurable
-@ComponentScan(basePackageClasses = {CompactDisc.class})
-//@ComponentScan(basePackages = {"com.wyl.spring.demo.soundsystem"})
+//@ComponentScan(basePackageClasses = {CompactDisc.class})
+@ComponentScan(basePackages = {"com.wyl.spring.demo.soundsystem"})
 public class CDPlayConfig {
 
     @Bean
