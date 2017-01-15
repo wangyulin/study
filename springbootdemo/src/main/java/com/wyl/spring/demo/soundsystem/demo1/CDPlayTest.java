@@ -1,4 +1,4 @@
-package com.wyl.spring.demo.soundsystem;
+package com.wyl.spring.demo.soundsystem.demo1;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

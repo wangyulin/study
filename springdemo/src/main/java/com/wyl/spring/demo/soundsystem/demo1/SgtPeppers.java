@@ -1,6 +1,5 @@
-package com.wyl.spring.demo.soundsystem;
+package com.wyl.spring.demo.soundsystem.demo1;
 
-import com.wyl.spring.demo.soundsystem.CompactDisc;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,5 +13,10 @@ public class SgtPeppers implements CompactDisc {
 
     public void play() {
         System.out.println("Playing " + tilte + " by " + artist);
+    }
+
+    @Override
+    public void playTrack(int index) {
+
     }
 }

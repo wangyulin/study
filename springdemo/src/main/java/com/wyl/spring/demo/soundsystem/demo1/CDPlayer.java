@@ -1,4 +1,4 @@
-package com.wyl.spring.demo.soundsystem;
+package com.wyl.spring.demo.soundsystem.demo1;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

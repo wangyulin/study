@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:utils="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--<context:component-scan base-package="com.wyl.spring.demo.soundsystem" />-->
+
+    <context:property-placeholder location="blankdisc.properties" />
+
+    <bean class="com.wyl.spring.demo.soundsystem.demo2.CDConfig"/>
+
+    <bean id="cdPlayer" class="com.wyl.spring.demo.soundsystem.demo1.CDPlayer"
+        c:compactDisc-ref="compactDisc"/>
+
+    <!--<bean id="compactDisc" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc"
+        c:title="${disc.title}"
+        c:artist="${disc.artist}"/>-->
+
+    <bean id="compactDisc_01" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc"
+          c:title="#{systemProperties['disc.title']}"
+          c:artist="#{systemProperties['disc.artist']}"/>
+
+</beans>

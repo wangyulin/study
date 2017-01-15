@@ -1,12 +1,11 @@
-package com.wyl.spring.demo.soundsystem;
+package com.wyl.spring.demo.soundsystem.demo1;
 
-import com.wyl.spring.demo.soundsystem.conf.CDPlayConfig;
+import com.wyl.spring.demo.soundsystem.demo1.conf.CDPlayConfig;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

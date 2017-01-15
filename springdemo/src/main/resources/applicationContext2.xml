@@ -17,47 +17,6 @@
 
     <!--<context:component-scan base-package="com.wyl.spring.demo.soundsystem" />-->
 
-    <bean id="cd" class="com.wyl.spring.demo.soundsystem.demo1.SgtPeppers"/>
-
-    <bean id="cdPlayer" class="com.wyl.spring.demo.soundsystem.demo1.CDPlayer">
-        <constructor-arg ref="cd"/>
-    </bean>
-
-    <bean id="cdPlayer01" class="com.wyl.spring.demo.soundsystem.demo1.CDPlayer"
-        c:compactDisc-ref="cd"/>
-
-    <bean id="blankDisc" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc">
-        <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
-        <constructor-arg value="The Beatles" />
-    </bean>
-
-    <bean id="blankDisc2" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc2">
-        <constructor-arg value="Sgt. Pepper's Lonely Hearts Club Band" />
-        <constructor-arg value="The Beatles" />
-        <constructor-arg>
-            <list>
-                <value>Getting Better</value>
-                <value>Fixing a Hole</value>
-            </list>
-        </constructor-arg>
-    </bean>
-
-
-    <bean id="blankDisc01" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc"
-        c:title="Sgt. Pepper's Lonely Hearts Club Band"
-        c:artist="The Beatles" />
-
-    <bean id="blankDisc02" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc"
-          c:_0="Sgt. Pepper's Lonely Hearts Club Band"
-          c:_1="The Beatles" />
-
-    <bean id="cdPlayer2" class="com.wyl.spring.demo.soundsystem.demo1.CDPlayer2">
-        <property name="compactDisc" ref="cd"/>
-    </bean>
-
-    <bean id="cdPlayer2_01" class="com.wyl.spring.demo.soundsystem.demo1.CDPlayer2"
-          p:compactDisc-ref="cd"/>
-
     <bean id="blankDisc3" class="com.wyl.spring.demo.soundsystem.demo1.BlankDisc3"
         p:title="Sgt. Pepper's Lonely Hearts Club Band"
         p:artist="The Beatles"

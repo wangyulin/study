@@ -1,9 +1,9 @@
-package com.wyl.spring.demo.soundsystem.conf;
+package com.wyl.spring.demo.soundsystem.demo1.conf;
 
-import com.wyl.spring.demo.soundsystem.CDPlayer;
-import com.wyl.spring.demo.soundsystem.CompactDisc;
-import com.wyl.spring.demo.soundsystem.MediaPlayer;
-import com.wyl.spring.demo.soundsystem.SgtPeppers;
+import com.wyl.spring.demo.soundsystem.demo1.CDPlayer;
+import com.wyl.spring.demo.soundsystem.demo1.CompactDisc;
+import com.wyl.spring.demo.soundsystem.demo1.MediaPlayer;
+import com.wyl.spring.demo.soundsystem.demo1.SgtPeppers;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
