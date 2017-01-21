@@ -63,6 +63,7 @@ public class OrderStat {
 			//int sum = 0;
 			for (Text val : values) {
 				//sum += val.get();
+
 				context.write(NullWritable.get(), val);
 			}
 			//result.set(sum);

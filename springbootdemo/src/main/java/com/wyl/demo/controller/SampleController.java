@@ -25,5 +25,11 @@ public class SampleController {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SampleController.class, args);
+        //JpaRepository e;
+        /*for(int i = 1; i< 100; i+=2) {
+            if(i%4 == 3 && i%6==5 && i%8 == 7) {
+                System.out.println (i);
+            }
+        }*/
     }
 }
