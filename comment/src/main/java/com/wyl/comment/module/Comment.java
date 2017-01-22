@@ -1,16 +1,16 @@
 package com.wyl.comment.module;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by wangyulin on 19/01/2017.
  */
 @Entity
-public class Comment {
+public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,8 +19,10 @@ public class Comment {
     private long bizId;
     private String bizType;
     private String content;
+
     private Date createTime;
-    private Date modifyTime;
+    private Date updateTime;
+    @JsonIgnore
     private boolean deleted;
     private long parentId;
 
@@ -72,12 +74,12 @@ public class Comment {
         this.createTime = createTime;
     }
 
-    public Date getModifyTime() {
-        return modifyTime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public boolean isDeleted() {
@@ -105,7 +107,7 @@ public class Comment {
                 ", bizType='" + bizType + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +
-                ", modifyTime=" + modifyTime +
+                ", updateTime=" + updateTime +
                 ", deleted=" + deleted +
                 ", parentId=" + parentId +
                 '}';

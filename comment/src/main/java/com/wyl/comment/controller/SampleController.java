@@ -29,7 +29,7 @@ public class SampleController {
         return this.cityService.getCity("Bath", "UK");
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listCity")
     @Transactional(readOnly = true)
     public List<City> citys() {
         return this.cityService.getCitys("Bath", "UK");
