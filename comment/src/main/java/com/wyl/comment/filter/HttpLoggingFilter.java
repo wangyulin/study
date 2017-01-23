@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class HttpLoggingFilter implements Filter {
 
-    private static final Logger log = LoggerFactory.getLogger(HttpLoggingFilter.class);
+    private static final Logger log = LoggerFactory.getLogger("accessLog");
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -46,12 +46,24 @@ public class HttpLoggingFilter implements Filter {
             BufferedRequestWrapper bufferedRequest = new BufferedRequestWrapper(httpServletRequest);
             BufferedResponseWrapper bufferedResponse = new BufferedResponseWrapper(httpServletResponse);
 
+            Map<String, String> headers = new HashMap<String, String>();
+
+            Enumeration<String> headerNames = httpServletRequest.getHeaderNames();
+            if (headerNames != null) {
+                while (headerNames.hasMoreElements()) {
+                    String name = headerNames.nextElement();
+                    headers.put(name, httpServletRequest.getHeader(name));
+                    System.out.println(name + " : " + httpServletRequest.getHeader(name));
+                }
+            }
+
             final StringBuilder logMessage = new StringBuilder("REST Request - ")
                     .append("[HTTP METHOD:")
                     .append(httpServletRequest.getMethod())
                     .append("] [PATH INFO:")
                     .append(httpServletRequest.getServletPath())
                     .append("] [REQUEST PARAMETERS:").append(requestMap)
+                    .append("] [HEADER :").append(headers)
                     .append("] [REQUEST BODY:")
                     .append(bufferedRequest.getRequestBody())
                     .append("] [REMOTE ADDRESS:")
@@ -59,10 +71,9 @@ public class HttpLoggingFilter implements Filter {
 
             chain.doFilter(bufferedRequest, bufferedResponse);
             logMessage.append(" [RESPONSE:").append(bufferedResponse.getContent()).append("]");
-            System.out.println(logMessage);
             log.info(logMessage.toString());
-        } catch (Throwable a) {
-            log.error(a.getMessage());
+        } catch (Exception e) {
+            log.error(e.toString());
         }
     }
 

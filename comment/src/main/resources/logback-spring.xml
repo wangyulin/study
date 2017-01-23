@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/comment.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <FileNamePattern>comment.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- Access Log Record Begin -->
+    <appender name="com.wyl.comment.filter.HttpLoggingFilter" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/comment_access.log</File>
+        <!--  -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/comment_access.log-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <!-- 日志最大的历史 30天 -->
+            <MaxHistory>30</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <MaxFileSize>1MB</MaxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="accessLog" level="INFO" additivity="false">
+        <appender-ref ref="com.wyl.comment.filter.HttpLoggingFilter" />
+    </logger>
+    <!-- Access Log Record End -->
+
+    <logger name="com.wyl.comment.controller" level="INFO" additivity="false">
+        <appender-ref ref="dailyRollingFileAppender" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="com.wyl.comment.utils" level="DEBUG" additivity="false">
+        <appender-ref ref="dailyRollingFileAppender" />
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+</configuration>

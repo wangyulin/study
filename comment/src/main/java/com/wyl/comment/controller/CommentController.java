@@ -2,6 +2,8 @@ package com.wyl.comment.controller;
 
 import com.wyl.comment.module.Comment;
 import com.wyl.comment.service.CommentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,8 @@ import java.util.List;
  */
 @RestController
 public class CommentController {
+
+    private Logger logger =  LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private CommentService commentService;
@@ -45,6 +49,7 @@ public class CommentController {
     @GetMapping("page")
     public Page<Comment> findCommentPage() {
         Pageable pageable = new PageRequest(0, 4, Sort.Direction.ASC, "updateTime");
+        logger.info("Tag : {}", pageable);
         Page<Comment> page = this.commentService.findCommentPage(pageable);
         return page;
     }

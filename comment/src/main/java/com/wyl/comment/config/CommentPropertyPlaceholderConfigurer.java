@@ -10,8 +10,8 @@ import java.util.Properties;
 /**
  * Created by wangyulin on 21/01/2017.
  */
-@Configuration
-@PropertySource(name="contextProperties", ignoreResourceNotFound=true, value={"classpath:application.properties"})
+//@Configuration
+//@PropertySource(name="contextProperties", ignoreResourceNotFound=true, value={"classpath:application.properties"})
 public class CommentPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 
     private static final String URL = "spring.datasource.url";
@@ -26,7 +26,6 @@ public class CommentPropertyPlaceholderConfigurer extends PropertyPlaceholderCon
         props.setProperty(CLASSNAME, "com.mysql.jdbc.Driver");
         props.setProperty(USERNAME, "root");
         props.setProperty(PASSWORD, "123456");
-        System.out.println("111");
         super.processProperties(beanFactoryToProcess, props);
     }
 

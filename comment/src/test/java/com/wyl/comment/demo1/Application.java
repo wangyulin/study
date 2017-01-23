@@ -1,7 +1,6 @@
 package com.wyl.comment.demo1;
 
-/*import com.wyl.comment.dao.CommentRepository;
-import com.wyl.comment.dao.CustomerRepository;
+import com.wyl.comment.dao.CommentRepository;
 import com.wyl.comment.module.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,16 +8,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;*/
+import org.springframework.context.annotation.Bean;
 
 /**
  * Created by wangyulin on 20/01/2017.
  */
-//@SpringBootApplication
+@SpringBootApplication
 public class Application {
-/*
 
     private static final Logger log = LoggerFactory.getLogger(Application.class);
+
+    /*
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
