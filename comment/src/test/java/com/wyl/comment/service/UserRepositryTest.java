@@ -3,7 +3,9 @@ package com.wyl.comment.service;
 import com.wyl.comment.UserApplication;
 import com.wyl.comment.dao.UserRepository;
 import com.wyl.comment.module.User;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,12 @@ public class UserRepositryTest {
         // 测试findAll, 查询所有记录, 验证上面的删除是否成功
         Assert.assertEquals(9, userRepository.findAll().size());
 
+    }
+
+    @After
+    @Before
+    public void delete() {
+        userRepository.deleteAll();
     }
 
 }
