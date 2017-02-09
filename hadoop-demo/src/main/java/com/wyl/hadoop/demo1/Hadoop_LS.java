@@ -46,7 +46,7 @@ public class Hadoop_LS {
 	}
 	
 	public static void moveTo() throws IOException {
-		Configuration conf = initConf();  
+		Configuration conf = initConf();
         FileSystem fs = FileSystem.get(conf);
         
 	}
