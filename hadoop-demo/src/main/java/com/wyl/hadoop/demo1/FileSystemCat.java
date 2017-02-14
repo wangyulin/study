@@ -2,6 +2,7 @@ package com.wyl.hadoop.demo1;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IOUtils;
@@ -19,6 +20,10 @@ public class FileSystemCat {
         String uri = "hdfs://wangyulin-test-host:9000/test/hadoop/data/weather_data_output_2/part-r-00000";
         Configuration conf = new Configuration();
         FileSystem fs = FileSystem.get(URI.create(uri), conf);
+
+        FileStatus status = fs.getFileStatus(new Path(uri));
+
+
         /** FSDataInputStream 支持随机读*/
         FSDataInputStream in = null;
         try {
