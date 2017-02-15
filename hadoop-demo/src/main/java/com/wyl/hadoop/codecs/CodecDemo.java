@@ -29,11 +29,13 @@ public class CodecDemo {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        String codecClassname = "org.apache.hadoop.io.compress.GzipCodec";
+        //String codecClassname = "org.apache.hadoop.io.compress.GzipCodec";
+        String codecClassname = "com.hadoop.compression.lzo.LzopCodec";
         CodecPool cp;
         //compress(codecClassname, "file:///Users/wangyulin/word.sql", "file:///Users/wangyulin/word.gz");
         //uncompress(codecClassname, "file:///Users/wangyulin/word.gz", "file:///Users/wangyulin/word.gz.sql");
-        FileSystem fs = FileSystem.get(initConf());
+        Configuration conf = initConf();
+        FileSystem fs = FileSystem.get(conf);
         Path path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
         fs.delete(path);
         path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
@@ -44,9 +46,9 @@ public class CodecDemo {
         //compress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log", "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
         //uncompress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz", "hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
 
-        compress(codecClassname, "/test/springMVC.log", "/test/springMVC.log.gz");
+        compress(codecClassname, "/test/springMVC.log", "/test/springMVC.log.loz");
         //uncompress(codecClassname, "/test/springMVC.log.gz", "/test/springMVC.logv2");
-        uncompressV2("/test/springMVC.log.gz", "/test/springMVC.logv2");
+        uncompressV2("/test/springMVC.log.loz", "/test/springMVC.logv3");
     }
 
     /**

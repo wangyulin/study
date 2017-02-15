@@ -5,6 +5,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.compress.GzipCodec;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -18,7 +19,7 @@ public class MaxTemperature {
 
     public static String ip = "wangyulin-test-host";
     public static String hdfsUri = String.format("hdfs://%s:9000", ip);
-    public static String inputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data/noaa/*");
+    public static String inputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data/*");
     public static String outputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data_output");
 
     public static Configuration initConf() {
@@ -41,6 +42,8 @@ public class MaxTemperature {
 
         FileInputFormat.addInputPath(job, new Path(inputPath));
         FileOutputFormat.setOutputPath(job, new Path(outputPath));
+        FileOutputFormat.setCompressOutput(job, true);
+        FileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
 
         job.setMapperClass(MaxTemperatureMapper.class);
         job.setReducerClass(MaxTemperatureReducer.class);
