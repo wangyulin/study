@@ -4,7 +4,9 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 import org.apache.hadoop.hive.serde2.thrift.TReflectionUtils;
 import org.apache.hadoop.io.IOUtils;
+import org.apache.hadoop.io.compress.CodecPool;
 import org.apache.hadoop.io.compress.CompressionCodec;
+import org.apache.hadoop.io.compress.CompressionCodecFactory;
 import org.apache.hadoop.io.compress.CompressionOutputStream;
 import org.apache.hadoop.util.ReflectionUtils;
 
@@ -28,56 +30,66 @@ public class CodecDemo {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         String codecClassname = "org.apache.hadoop.io.compress.GzipCodec";
-        //list();
+        CodecPool cp;
         //compress(codecClassname, "file:///Users/wangyulin/word.sql", "file:///Users/wangyulin/word.gz");
         //uncompress(codecClassname, "file:///Users/wangyulin/word.gz", "file:///Users/wangyulin/word.gz.sql");
-
-        compress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log", "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
-        uncompress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz", "hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
-    }
-
-    public static void list() throws IOException, InterruptedException {
-        Configuration conf = initConf();
-        FileSystem fs = FileSystem.get(conf);
-        Path path = new Path("/test/");
-        getFile(path,fs);
+        FileSystem fs = FileSystem.get(initConf());
+        Path path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
+        fs.delete(path);
+        path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
+        fs.delete(path);
         fs.close();
+
+        Thread.sleep(10000);
+        //compress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log", "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
+        //uncompress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz", "hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
+
+        compress(codecClassname, "/test/springMVC.log", "/test/springMVC.log.gz");
+        //uncompress(codecClassname, "/test/springMVC.log.gz", "/test/springMVC.logv2");
+        uncompressV2("/test/springMVC.log.gz", "/test/springMVC.logv2");
     }
 
-    @SuppressWarnings("deprecation")
-    public static void getFile(Path path,FileSystem fs) throws IOException {
-        FileStatus[] fileStatus = fs.listStatus(path);
-        for(int i=0;i<fileStatus.length;i++){
-            if(fileStatus[i].isDir()){
-                Path p = new Path(fileStatus[i].getPath().toString());
-                getFile(p,fs);
-            }else{
-                System.out.println(fileStatus[i].getPath().toString());
-            }
-        }
-    }
-
+    /**
+     * 指定压缩工具类，对inputPath的文件压缩输出到outputPath
+     * @param codecClassName
+     * @param inputPath
+     * @param outputPath
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public static void compress(String codecClassName, String inputPath, String outputPath) throws ClassNotFoundException, IOException {
         Class<?> codecClass = Class.forName(codecClassName);
         Configuration conf = initConf();
         FileSystem fs = FileSystem.get(conf);
-        CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(codecClass, conf);
         FSDataOutputStream outputStream = fs.create(new Path(outputPath));
         FSDataInputStream in = fs.open(new Path(inputPath));
+
+        CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(codecClass, conf);
         CompressionOutputStream out = codec.createOutputStream(outputStream);
+
         IOUtils.copyBytes(in, out, conf);
         IOUtils.closeStream(in);
         IOUtils.closeStream(out);
     }
 
+    /**
+     * 指定解压缩工具类，对inputPath的文件解压输出到outputPath
+     * @param codecClassName
+     * @param inputPath
+     * @param outputPath
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public static void uncompress(String codecClassName, String inputPath, String outputPath) throws ClassNotFoundException, IOException {
         Class<?> codecClass = Class.forName(codecClassName);
         Configuration conf = initConf();
         FileSystem fs = FileSystem.get(conf);
-        CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(codecClass, conf);
+
         FSDataInputStream inputStream = fs.open(new Path(inputPath));
         InputStream in = null;
         OutputStream out = null;
+
+        CompressionCodec codec = (CompressionCodec) ReflectionUtils.newInstance(codecClass, conf);
         try {
             in = codec.createInputStream(inputStream);
             out = fs.create(new Path(outputPath));
@@ -88,4 +100,36 @@ public class CodecDemo {
         }
     }
 
+    /**
+     * 通过指定要解压的文件扩展名获取解压工具类，对inputPath的文件解压输出到outputPath
+     * @param inputPath
+     * @param outputPath
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
+    public static void uncompressV2(String inputPath, String outputPath) throws ClassNotFoundException, IOException {
+
+        Configuration conf = initConf();
+        FileSystem fs = FileSystem.get(conf);
+
+        CompressionCodecFactory factory = new CompressionCodecFactory(conf);
+        CompressionCodec codec = factory.getCodec(new Path(inputPath));
+        if(null == codec) {
+            System.err.println("通过文件扩展名称获取解压类失败！");
+            System.exit(1);
+        }
+
+        FSDataInputStream inputStream = fs.open(new Path(inputPath));
+        InputStream in = null;
+        OutputStream out = null;
+
+        try {
+            in = codec.createInputStream(inputStream);
+            out = fs.create(new Path(outputPath));
+            IOUtils.copyBytes(in, out, conf);
+        } finally {
+            IOUtils.closeStream(out);
+            IOUtils.closeStream(in);
+        }
+    }
 }
