@@ -36,7 +36,7 @@ public class CodecDemo {
         //uncompress(codecClassname, "file:///Users/wangyulin/word.gz", "file:///Users/wangyulin/word.gz.sql");
         Configuration conf = initConf();
         FileSystem fs = FileSystem.get(conf);
-        Path path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
+        Path path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.log.lzo");
         fs.delete(path);
         path = new Path("hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
         fs.delete(path);
@@ -46,9 +46,9 @@ public class CodecDemo {
         //compress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log", "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz");
         //uncompress(codecClassname, "hdfs://wangyulin-test-host:9000/test/springMVC.log.gz", "hdfs://wangyulin-test-host:9000/test/springMVC.logv2");
 
-        compress(codecClassname, "/test/springMVC.log", "/test/springMVC.log.gz");
+        compress(codecClassname, "/test/springMVC.log", "/test/springMVC.log.lzo");
         //uncompress(codecClassname, "/test/springMVC.log.gz", "/test/springMVC.logv2");
-        uncompressV2("/test/springMVC.log.gz", "/test/springMVC.logv2");
+        uncompressV2("/test/springMVC.log.lzo", "/test/springMVC.logv3");
     }
 
     /**

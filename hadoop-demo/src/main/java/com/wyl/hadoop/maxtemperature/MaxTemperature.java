@@ -19,7 +19,7 @@ public class MaxTemperature {
 
     public static String ip = "wangyulin-test-host";
     public static String hdfsUri = String.format("hdfs://%s:9000", ip);
-    public static String inputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data/*");
+    public static String inputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data/noaa/*");
     public static String outputPath = String.format("hdfs://%s:9000%s", ip, "/test/hadoop/data/weather_data_output");
 
     public static Configuration initConf() {
@@ -52,7 +52,8 @@ public class MaxTemperature {
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(1);
 
-        System.exit(job.waitForCompletion(false) ? 0 : 1);
+        //job.waitForCompletion(true);
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 
 }
