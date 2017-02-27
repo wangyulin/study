@@ -48,6 +48,7 @@ public class HelloController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	@ResponseBody
+
 	public Object hello() {
 		
 		Map<String,String> result = new HashMap<String,String>();

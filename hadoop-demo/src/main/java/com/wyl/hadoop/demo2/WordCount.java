@@ -7,6 +7,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -35,12 +36,12 @@ public class WordCount {
 	// TextInputFormat按行对文件进行分割，并传给Mapper
 	// 输入key表示当前行的第一个byte是整个文件的第几个byte，实际是LongWritable类型
 	// 这里用Object是为了通用性考虑，完全可以换成LongWritable
-	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
+	public static class TokenizerMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
 
 		private final static IntWritable one = new IntWritable(1);
 		private Text word = new Text();
 
-		public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 			// 对文本分词（tokenizing）
 			StringTokenizer itr = new StringTokenizer(value.toString());
 			System.out.println("key : " + key + " ;" + " value : " + value);

@@ -106,7 +106,6 @@
     </dependencies>
 
 	<build>
-		<finalName>serverDemo</finalName>
         <resources>
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
