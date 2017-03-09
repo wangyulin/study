@@ -35,7 +35,8 @@ public class TestKafkaConsumer {
         this.executor = executor;
     }
 
-    private void start() {
+    private void
+    start() {
         connector = Consumer.createJavaConsumerConnector(config);
         Map<String, Integer> topics = new HashMap<>();
         topics.put(topic, partitionNum);
