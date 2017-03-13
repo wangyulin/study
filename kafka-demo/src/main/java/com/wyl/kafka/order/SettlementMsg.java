@@ -1,40 +1,20 @@
 package com.wyl.kafka.order;
 
-import java.util.List;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.Serializable;
 
 /**
  * Created by wangyulin on 09/03/2017.
  */
-public class SettlementMsg {
-
-    /** 区分创建订单(CREATE_ORDER)、支付成功(PAY_SUCCESS)*/
-    private String type;
-
+@Data
+@Slf4j
+public class SettlementMsg implements Serializable{
+    /** 订单信息*/
     private OrderInfo orderInfo;
 
-    private List<ProductInfo> productInfos;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public OrderInfo getOrderInfo() {
-        return orderInfo;
-    }
-
-    public void setOrderInfo(OrderInfo orderInfo) {
-        this.orderInfo = orderInfo;
-    }
-
-    public List<ProductInfo> getProductInfos() {
-        return productInfos;
-    }
-
-    public void setProductInfos(List<ProductInfo> productInfos) {
-        this.productInfos = productInfos;
-    }
+    /** 产品信息*/
+    private ProductInfo productInfo;
 }

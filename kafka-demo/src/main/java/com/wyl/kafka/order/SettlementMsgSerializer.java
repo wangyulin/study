@@ -1,13 +1,14 @@
 package com.wyl.kafka.order;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+/*import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serializer;
 
-import java.util.Map;
+import java.util.Map;*/
 
 /**
  * Created by wangyulin on 09/03/2017.
  */
+/*
 public class SettlementMsgSerializer implements Serializer<SettlementMsg> {
 
     @Override
@@ -33,3 +34,4 @@ public class SettlementMsgSerializer implements Serializer<SettlementMsg> {
     }
 
 }
+*/
