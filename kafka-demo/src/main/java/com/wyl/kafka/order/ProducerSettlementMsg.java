@@ -1,12 +1,10 @@
 package com.wyl.kafka.order;
 
+import kafka.common.FailedToSendMessageException;
+import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 import org.apache.commons.lang.SerializationUtils;
-import org.apache.kafka.clients.producer.Callback;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.*;
 
@@ -17,10 +15,11 @@ public class ProducerSettlementMsg {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        // props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         // serializer.class为消息的序列化类
         //props.put("value.serializer", "com.wyl.kafka.order.SettlementMsgSerializer");
-        props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
+        //props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
+        props.put("serializer.class", "kafka.serializer.StringEncoder");
         // 配置metadata.broker.list, 为了高可用, 最好配两个broker实例
         //props.put("metadata.broker.list", "c3-hadoop-tst-st06.bj:21500");
         //props.put("bootstrap.servers", "wangyulin-test-host:9092");
@@ -35,8 +34,9 @@ public class ProducerSettlementMsg {
         props.put("request.required.acks", "1");
 
         ProducerConfig conf = new ProducerConfig(props);
-        //Producer<String, byte[]> producer = new Producer<String, byte[]>(conf);
-        KafkaProducer<String, byte[]> producer = new KafkaProducer<String,byte[]>(props);
+        Producer<String, String> producer = new Producer<String, String>(conf);
+
+        /*KafkaProducer<String, byte[]> producer = new KafkaProducer<String,byte[]>(props);*/
 
         //KafkaProducer<String, SettlementMsg> producer = new KafkaProducer<String, SettlementMsg>(props);
 
@@ -58,10 +58,15 @@ public class ProducerSettlementMsg {
             SettlementMsg settlementMsg = new SettlementMsg();
             settlementMsg.setOrderInfo(orderInfo);
             settlementMsg.setProductInfo(productInfo);
-            byte[] bytes = SerializationUtils.serialize(settlementMsg);
-            //KeyedMessage<String, byte[]> data = new KeyedMessage<String, byte[]>("miui_theme_test", i + "", bytes);
 
-            producer.send(new ProducerRecord<String,byte[]>("miui_theme_test_01",bytes), new Callback() {
+            KeyedMessage<String, String> data = new KeyedMessage<String, String>("miui_theme_test_01", i + "", i + "= test");
+            try{
+                producer.send(data);
+            } catch (FailedToSendMessageException e) {
+                e.printStackTrace();
+            }
+
+            /*producer.send(new ProducerRecord<String,byte[]>("miui_theme_test_01",bytes), new Callback() {
 
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -77,7 +82,7 @@ public class ProducerSettlementMsg {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
             /*producer.send(new ProducerRecord<String, SettlementMsg>("miui_theme_test", i + "", settlementMsg),
                     new Callback() {
                         public void onCompletion(RecordMetadata metadata, Exception e) {

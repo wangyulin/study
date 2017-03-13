@@ -1,14 +1,16 @@
 package com.wyl.kafka.demo3;
 
+/*
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serializer;
 
 import java.util.Map;
+*/
 
 /**
  * Created by wangyulin on 08/03/2017.
  */
-public class UserSerializer implements Serializer<User> {
+/*public class UserSerializer implements Serializer<User> {
 
     @Override
     public void close() {
@@ -31,4 +33,4 @@ public class UserSerializer implements Serializer<User> {
         }
         return retVal;
     }
-}
+}*/

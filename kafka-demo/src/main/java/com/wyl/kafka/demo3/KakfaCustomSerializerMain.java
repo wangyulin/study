@@ -3,6 +3,7 @@ package com.wyl.kafka.demo3;
 /**
  * Created by wangyulin on 08/03/2017.
  */
+/*
 public final class KakfaCustomSerializerMain {
 
     public static void main(String[] args) {
@@ -33,4 +34,4 @@ public final class KakfaCustomSerializerMain {
 
         }
     }
-}
+}*/

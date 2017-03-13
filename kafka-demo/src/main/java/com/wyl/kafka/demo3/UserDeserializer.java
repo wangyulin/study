@@ -1,13 +1,15 @@
 package com.wyl.kafka.demo3;
 
+/*
 import java.util.Map;
 import org.apache.kafka.common.serialization.Deserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+*/
 
 /**
  * Created by wangyulin on 08/03/2017.
  */
-public class UserDeserializer implements Deserializer<User> {
+/*public class UserDeserializer implements Deserializer<User> {
 
     @Override
     public void close() {
@@ -32,5 +34,5 @@ public class UserDeserializer implements Deserializer<User> {
         return user;
     }
 
-}
+}*/
 

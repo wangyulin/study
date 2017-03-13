@@ -1,5 +1,6 @@
 package com.wyl.kafka.order;
 
+
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
@@ -10,6 +11,7 @@ import org.apache.commons.lang.SerializationUtils;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 
 /**
  * Created by wangyulin on 09/03/2017.
@@ -36,7 +38,21 @@ public class ConsumerSettlementMsg {
         props.put("metadata.broker.list", "10.108.44.42:21500,10.108.45.42:21500,10.108.46.42:21500,10.108.47.42:21500,10.108.42.43:21500");
 
         ConsumerConfig conf = new ConsumerConfig(props);
+        ConsumerConnector consumer = Consumer.createJavaConsumerConnector(conf);
 
+        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
+        topicCountMap.put(topic, new Integer(numThreads));//KafkaStream数量与线程数量一一对应
+        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
+        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
+
+        for (final KafkaStream stream : streams) {
+            ConsumerIterator<byte[], byte[]> it = stream.iterator();
+            while (it.hasNext()) {
+                System.out.println("Thread " + ": " + new String(it.next().message()));
+            }
+        }
+
+        /*
         ConsumerConnector consumer = Consumer.createJavaConsumerConnector(conf);
         //设置处理消息线程数，线程数应小于等于partition数量，若线程数大于partition数量，则多余的线程则闲置，不会进行工作
         //key:topic名称 value:线程数
@@ -69,22 +85,16 @@ public class ConsumerSettlementMsg {
                     e.printStackTrace();
                 }
             }
-            /*executor.execute(new Runnable() {
+            *//*executor.execute(new Runnable() {
                 @Override
                 public void run() {
 
                 }
-            });*/
-        }
+            });*//*
+        }*/
 
 
-        /*ConsumerConnector consumer = kafka.consumer.Consumer.createJavaConsumerConnector(conf);
-
-        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-        topicCountMap.put(topic, new Integer(numThreads));//KafkaStream数量与线程数量一一对应
-        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
-
+        /*
         // now launch all the threads
         executor = Executors.newFixedThreadPool(numThreads);
         // now create an object to consume the messages
