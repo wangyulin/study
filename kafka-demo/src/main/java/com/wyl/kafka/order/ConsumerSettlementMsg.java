@@ -26,13 +26,8 @@ public class ConsumerSettlementMsg {
         Properties props = new Properties();
         props.put("zookeeper.connect", "10.108.83.16:11000,10.108.83.17:11000,10.108.83.24:11000/kafka/c3tst-staging");
         props.put("group.id", "group_id_01");
-        props.put("zookeeper.session.timeout.ms", "30000");//不要设置得太小，否则会频繁触发rebalance
-        props.put("rebalance.backoff.ms", "10000");//两次rebalance尝试之间的时间间隔，建议不要太小
-        props.put("key.deserializer", "kafka.serializer.StringDecoder");
-        props.put("value.deserializer", "kafka.serializer.StringDecoder");
-        //props.put("rebalance.max.retries", "10");//rebalance的尝试次数，需要保证rebalance.max.retries * rebalance.backoff.ms > zookeeper.session.timeout.ms
-        //props.put("fetch.message.max.bytes", "3145728");// 3M，设置得大一点避免无法拉去topic中比较大的message
-        //props.put("auto.offset.reset", "largest");//没有特殊需求可以不配置；largest表示从最新的数据开始消费，smallest表示从最旧的数据开始消费；默认largest
+        props.put("key.deserializer.class", "kafka.serializer.StringDecoder");
+        props.put("deserializer.class", "kafka.serializer.DefaultDecoder");
 
         ConsumerConnector consumer = kafka.consumer.Consumer.createJavaConsumerConnector(
                 new ConsumerConfig(props));
@@ -64,7 +59,8 @@ public class ConsumerSettlementMsg {
         public void run() {
             ConsumerIterator<byte[], byte[]> it = stream.iterator();
             while (it.hasNext()) {
-                System.out.println("Thread " + threadNumber + ": " + new String(it.next().message()));
+                SettlementMsg settlementMsg = (SettlementMsg) SerializationUtils.deserialize(it.next().message());
+                System.out.println("Thread " + threadNumber + ": " + settlementMsg);
             }
             System.out.println("Shutting down Thread: " + threadNumber);
         }

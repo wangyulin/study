@@ -1,37 +1,15 @@
 package com.wyl.kafka.order;
 
-/*import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.kafka.common.serialization.Serializer;
-
-import java.util.Map;*/
+import kafka.serializer.Encoder;
+import org.apache.commons.lang.SerializationUtils;
 
 /**
  * Created by wangyulin on 09/03/2017.
  */
-/*
-public class SettlementMsgSerializer implements Serializer<SettlementMsg> {
+public class SettlementMsgSerializer implements Encoder<SettlementMsg> {
 
     @Override
-    public void close() {
-
+    public byte[] toBytes(SettlementMsg settlementMsg) {
+        return SerializationUtils.serialize(settlementMsg);
     }
-
-    @Override
-    public void configure(Map<String, ?> arg0, boolean arg1) {
-
-    }
-
-    @Override
-    public byte[] serialize(String arg0, SettlementMsg arg1) {
-        byte[] retVal = null;
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            retVal = objectMapper.writeValueAsString(arg1).getBytes();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return retVal;
-    }
-
 }
-*/
