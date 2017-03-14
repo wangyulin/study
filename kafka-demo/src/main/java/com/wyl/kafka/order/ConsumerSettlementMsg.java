@@ -24,77 +24,23 @@ public class ConsumerSettlementMsg {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("group.id", "1");
-        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        // serializer.class为消息的序列化类
-        props.put("value.deserializer", "com.wyl.kafka.order.SettlementMsgDeserializer");
-        // 配置metadata.broker.list, 为了高可用, 最好配两个broker实例
-        //props.put("metadata.broker.list", "c3-hadoop-tst-st06.bj:21500");
-        //props.put("bootstrap.servers", "wangyulin-test-host:9092");
-        //props.put("metadata.broker.list", "wangyulin-test-host:9092");
-        //props.put("zookeeper.connect", "wangyulin-test-host:2181");
-
         props.put("zookeeper.connect", "10.108.83.16:11000,10.108.83.17:11000,10.108.83.24:11000/kafka/c3tst-staging");
-        props.put("metadata.broker.list", "10.108.44.42:21500,10.108.45.42:21500,10.108.46.42:21500,10.108.47.42:21500,10.108.42.43:21500");
+        props.put("group.id", "group_id_01");
+        props.put("zookeeper.session.timeout.ms", "30000");//不要设置得太小，否则会频繁触发rebalance
+        props.put("rebalance.backoff.ms", "10000");//两次rebalance尝试之间的时间间隔，建议不要太小
+        props.put("key.deserializer", "kafka.serializer.StringDecoder");
+        props.put("value.deserializer", "kafka.serializer.StringDecoder");
+        //props.put("rebalance.max.retries", "10");//rebalance的尝试次数，需要保证rebalance.max.retries * rebalance.backoff.ms > zookeeper.session.timeout.ms
+        //props.put("fetch.message.max.bytes", "3145728");// 3M，设置得大一点避免无法拉去topic中比较大的message
+        //props.put("auto.offset.reset", "largest");//没有特殊需求可以不配置；largest表示从最新的数据开始消费，smallest表示从最旧的数据开始消费；默认largest
 
-        ConsumerConfig conf = new ConsumerConfig(props);
-        ConsumerConnector consumer = Consumer.createJavaConsumerConnector(conf);
-
+        ConsumerConnector consumer = kafka.consumer.Consumer.createJavaConsumerConnector(
+                new ConsumerConfig(props));
         Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
         topicCountMap.put(topic, new Integer(numThreads));//KafkaStream数量与线程数量一一对应
         Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
         List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
 
-        for (final KafkaStream stream : streams) {
-            ConsumerIterator<byte[], byte[]> it = stream.iterator();
-            while (it.hasNext()) {
-                System.out.println("Thread " + ": " + new String(it.next().message()));
-            }
-        }
-
-        /*
-        ConsumerConnector consumer = Consumer.createJavaConsumerConnector(conf);
-        //设置处理消息线程数，线程数应小于等于partition数量，若线程数大于partition数量，则多余的线程则闲置，不会进行工作
-        //key:topic名称 value:线程数
-        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-        topicCountMap.put(topic, new Integer(1));
-        Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-        //声明一个线程池，用于消费各个partition
-        ExecutorService executor=Executors.newFixedThreadPool(1);
-        //获取对应topic的消息队列
-        List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
-
-        for (final KafkaStream stream : streams) {
-            ConsumerIterator<byte[], byte[]> it = stream.iterator();
-            //有信息则消费，无信息将会阻塞
-            while (it.hasNext()){
-                SettlementMsg message=null;
-                try {
-                    //将字节码反序列化成相应的对象
-                    byte[] bytes=it.next().message();
-                    SettlementMsg msg = (SettlementMsg) SerializationUtils.deserialize(bytes);
-                    System.out.println("===> " + msg.toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
-                //调用自己的业务逻辑
-                try {
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            *//*executor.execute(new Runnable() {
-                @Override
-                public void run() {
-
-                }
-            });*//*
-        }*/
-
-
-        /*
         // now launch all the threads
         executor = Executors.newFixedThreadPool(numThreads);
         // now create an object to consume the messages
@@ -102,17 +48,7 @@ public class ConsumerSettlementMsg {
         for (final KafkaStream stream : streams) {
             executor.submit(new ConsumerTest(stream, threadNumber));
             threadNumber++;
-        }*/
-
-        /*KafkaConsumer<String, SettlementMsg> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Arrays.asList("miui_theme_test"));
-
-        while (true) {
-            ConsumerRecords<String, SettlementMsg> records = consumer.poll(100);
-            for (final ConsumerRecord<String, SettlementMsg> record : records) {
-                System.out.println("Receive: " + record.value().getOrderInfo().getPrice());
-            }
-        }*/
+        }
     }
 
     //处理message的线程
@@ -133,5 +69,4 @@ public class ConsumerSettlementMsg {
             System.out.println("Shutting down Thread: " + threadNumber);
         }
     }
-
 }

@@ -1,6 +1,6 @@
 package com.wyl.kafka.official;
 
-import com.wyl.kafka.order.SettlementMsg;
+/*import com.wyl.kafka.order.SettlementMsg;
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -8,10 +8,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutionException;*/
 /**
  * Created by wangyulin on 13/03/2017.
  */
+/*
 public class Producer extends Thread {
     private final KafkaProducer<Integer, byte[]> producer;
     private final String topic;
@@ -19,7 +20,8 @@ public class Producer extends Thread {
 
     public Producer(String topic, Boolean isAsync) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "wangyulin-test-host:9092");
+        props.put("bootstrap.servers", KafkaProperties.KAFKA_SERVER_URL);
+        props.put("metadata.broker.list", KafkaProperties.KAFKA_SERVER_URL);
         props.put("client.id", "DemoProducer");
         props.put("key.serializer", "org.apache.kafka.common.serialization.IntegerSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
@@ -71,7 +73,8 @@ class DemoCallBack implements Callback {
         this.message = message;
     }
 
-    /**
+    */
+/**
      * A callback method the user can implement to provide asynchronous handling of request completion. This method will
      * be called when the record sent to the server has been acknowledged. Exactly one of the arguments will be
      * non-null.
@@ -79,18 +82,21 @@ class DemoCallBack implements Callback {
      * @param metadata  The metadata for the record that was sent (i.e. the partition and offset). Null if an error
      *                  occurred.
      * @param exception The exception thrown during processing of this record. Null if no error occurred.
-     */
+     *//*
+
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         long elapsedTime = System.currentTimeMillis() - startTime;
         if (metadata != null) {
-            /*System.out.println(
+            */
+/*System.out.println(
                     "message(" + key + ", " + message + ") sent to partition(" + metadata.partition() +
                             "), " +
-                            "offset(" + metadata.offset() + ") in " + elapsedTime + " ms");*/
+                            "offset(" + metadata.offset() + ") in " + elapsedTime + " ms");*//*
+
             SettlementMsg data = (SettlementMsg) SerializationUtils.deserialize(message);
             System.out.println("发送的信息 : " + data);
         } else {
             exception.printStackTrace();
         }
     }
-}
+}*/
