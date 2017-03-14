@@ -1,4 +1,4 @@
-package com.wyl.kafka.order;
+package com.wyl.kafka.order.model;
 
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class OrderInfo implements Serializable {
     private String orderType;
 
     /** 订单包含product的总量*/
-    private long amount;
+    //private long amount;
 
     /** 订单创建时间*/
     private long createTime;
@@ -34,13 +34,13 @@ public class OrderInfo implements Serializable {
      * 2:success_paid;
      * 3:fail_not_paid
      */
-    private byte status;
+    private String status;
 
     /** 订单支付渠道: 1:mini; 2:vip虚拟币 */
     private String payChannel;
 
     /** 订单包含的产品类型:主题、字体、动态壁纸、铃声等*/
-    private byte productType;
+    private String productType;
 
     /** 订单产品id,与assemblyId对应*/
     private String productId;
@@ -49,33 +49,33 @@ public class OrderInfo implements Serializable {
     private String productName;
 
     /** 订单产品版本*/
-    private Long productVersion;
+    //private Long productVersion;
 
     /** 订单产品版本名称*/
     private String versionName;
 
-    /** 订单价格*/
-    private long price;
+    /** 订单价格 *100 单位：分 */
+    private long priceOfCent;
 
-    /** 设计师ID*/
-    private long developerId;
-    /** 用户id*/
-    private long userId;
+    /** 设计师miid*/
+    private long designerMiid;
+    /** 用户miid*/
+    //private long userMiid;
     /** 用户imei*/
-    private String imei;
+    //private String imei;
 
     /** 用户订单创建设备apkChannel*/
-    private String apkChannel;
+    //private String apkChannel;
 
     /** 用户订单创建设备romChannel*/
-    private String romChannel;
+    //private String romChannel;
 
     /** 用户订单创建设备romVersion*/
-    private String romVersion;
+    //private String romVersion;
 
     /** 用户订单处理服务器地区信息*/
-    private String serverRegion;
+    //private String serverRegion;
 
     /** 用户订单创建客户端地区信息*/
-    private String clientRegin;
+    //private String clientRegin;
 }

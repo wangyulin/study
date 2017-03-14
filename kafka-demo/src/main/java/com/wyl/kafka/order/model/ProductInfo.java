@@ -1,5 +1,6 @@
-package com.wyl.kafka.order;
+package com.wyl.kafka.order.model;
 
+import com.wyl.kafka.order.model.DividedInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,16 +14,16 @@ public class ProductInfo implements Serializable {
     private long local_id;
 
     /** 等同于productId*/
-    private String assemblyId;
+    //private String assemblyId;
 
-    private String assemblyName;
+    //private String assemblyName;
 
-    private long price;
+    //private long price;
 
-    /** 上传主题的设计师的开发者ID*/
-    private long publisherPrincipalId;
+    /** 上传主题的设计师的开发者miid*/
+    private long designerMiid;
 
-    private long lastVersion;
+    //private long lastVersion;
 
     /** 分成类型*/
     private String divideType;

@@ -1,7 +1,6 @@
-package com.wyl.kafka.order;
+package com.wyl.kafka.order.model;
 
 import lombok.Data;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.Serializable;
