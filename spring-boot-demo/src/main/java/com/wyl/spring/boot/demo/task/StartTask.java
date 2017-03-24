@@ -21,7 +21,7 @@ public class StartTask {
         DemoTask demoTask = ApplicationContextProvider.getBean("demoTask", DemoTask.class);
         demoTask.start();
 
-        DemoTask demoTask1 = ApplicationContextProvider.getBean("demoTask", DemoTask.class);
-        demoTask1.start();
+        /*DemoTask demoTask1 = ApplicationContextProvider.getBean("demoTask", DemoTask.class);
+        demoTask1.start();*/
     }
 }
