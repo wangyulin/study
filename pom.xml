@@ -12,6 +12,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<junit.version>4.12</junit.version>
+        <spring-cloud-version>Camden.SR5</spring-cloud-version>
+        <spring-boot-version>1.5.1.RELEASE</spring-boot-version>
 		<spring.version>4.3.2.RELEASE</spring.version>
 		<mysql.connector.java.version>5.1.39</mysql.connector.java.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
@@ -35,6 +37,7 @@
 		<json-lib.version>2.4</json-lib.version>
 		<jedis.version>2.9.0</jedis.version>
 		<zookeeper.version>3.4.8</zookeeper.version>
+		<google.guava.version>21.0</google.guava.version>
 	</properties>
 
 	<modules>
@@ -49,14 +52,27 @@
 		<module>kafka-demo</module>
 		<module>study-utils</module>
 		<module>zookeeper-demo</module>
-		<module>springbootdemo</module>
 		<module>springdemo</module>
-    <module>spittr</module>
-    <module>comment</module>
-  </modules>
+        <module>comment</module>
+        <module>spring-boot-demo</module>
+    </modules>
 
 	<dependencyManagement>
 		<dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
@@ -260,6 +276,11 @@
 				<groupId>com.hadoop.gplcompression</groupId>
 				<artifactId>hadoop-lzo</artifactId>
 				<version>0.4.20</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${google.guava.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
