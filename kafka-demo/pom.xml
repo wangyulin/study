@@ -11,6 +11,7 @@
 	<groupId>com.wyl</groupId>
 	<artifactId>kafka-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>kafka-demo</name>
 	<url>http://maven.apache.org</url>
 
@@ -37,6 +38,21 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.14</version>
+        </dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.10</artifactId>
+			<version>2.3.16</version>
+		</dependency>
+        <dependency>
+            <groupId>com.yammer.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
         </dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -74,16 +90,25 @@
 
 	<build>
 		<plugins>
-			<plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>jdk18</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.5.5</version>
 				<configuration>
-					<!--<archive>
-						<manifest>
-							<mainClass>com.wyl.kafka.order.ProducerSettlementMsg</mainClass>
-						</manifest>
-					</archive>-->
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
@@ -97,7 +122,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 

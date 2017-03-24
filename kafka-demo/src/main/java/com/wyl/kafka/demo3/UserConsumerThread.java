@@ -1,14 +1,14 @@
 package com.wyl.kafka.demo3;
+/*
 
 import java.util.Arrays;
 import java.util.Properties;
-/*
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-*/
 
+*/
 
 /**
  * Created by wangyulin on 08/03/2017.

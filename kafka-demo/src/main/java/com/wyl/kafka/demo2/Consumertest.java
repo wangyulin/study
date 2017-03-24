@@ -51,11 +51,11 @@ public class Consumertest extends Thread {
         System.out.println("*********Results********");
         while(it.hasNext()){
             System.err.println("get data:" +new String(it.next().message()));
-            /*try {
+            try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
         }
     }
 

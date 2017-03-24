@@ -1,6 +1,9 @@
 package com.wyl.kafka.order;
 
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
 import com.wyl.kafka.order.model.SettlementMsg;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
@@ -21,20 +24,25 @@ import java.util.concurrent.Executors;
 public class ConsumerSettlementMsg {
 
     public static final int numThreads = 10;
-    public static final String topic = "miui_theme_test_01";
+    public static final String topic = "miui_theme_test_02";
     public static ExecutorService executor;
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("zookeeper.connect", "10.108.83.16:11000,10.108.83.17:11000,10.108.83.24:11000/kafka/c3tst-staging");
+        /*props.put("zookeeper.connect", "10.108.83.16:11000,10.108.83.17:11000,10.108.83.24:11000/kafka/c3tst-staging");*/
+        props.put("zookeeper.connect", "wangyulin-test-host:2181");
         props.put("group.id", "group_id_01");
         props.put("key.deserializer.class", StringDecoder.class.getName());
         props.put("deserializer.class", DefaultDecoder.class.getName());
 
-        props.put("fetch.message.max.bytes", "3145728");//3M，设置得大一点避免无法拉去topic中比较大的message
+        props.put("fetch.message.max.bytes", "314005728");//3M 3145728，设置得大一点避免无法拉去topic中比较大的message
         props.put("zookeeper.session.timeout.ms", "30000");//不要设置得太小，否则会频繁触发rebalance
         props.put("rebalance.backoff.ms", "10000");//两次rebalance尝试之间的时间间隔，建议不要太小
         props.put("rebalance.max.retries", "10");//rebalance的尝试次数，需要保证rebalance.max.retries * rebalance.backoff.ms > zookeeper.session.timeout.ms
+
+
+        final ActorSystem system = ActorSystem.create("kafka_consumer");
+        final ActorRef orderActor = system.actorOf(Props.create(OrderActor.class), "order_consumer");
 
         ConsumerConnector consumer = kafka.consumer.Consumer.createJavaConsumerConnector(
                 new ConsumerConfig(props));
