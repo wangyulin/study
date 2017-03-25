@@ -1,4 +1,4 @@
-package com.wyl.spring.boot.demo.task.job;
+package com.wyl.spring.boot.demo.task.thread.job;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;

@@ -1,7 +1,7 @@
-package com.wyl.spring.boot.demo.task;
+package com.wyl.spring.boot.demo.task.thread;
 
 import com.wyl.spring.boot.demo.conf.ApplicationContextProvider;
-import com.wyl.spring.boot.demo.task.job.DemoTask;
+import com.wyl.spring.boot.demo.task.thread.job.DemoTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
