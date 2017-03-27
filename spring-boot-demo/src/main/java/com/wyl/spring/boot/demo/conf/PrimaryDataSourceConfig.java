@@ -5,7 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * Created by wangyulin on 27/03/2017.
  */
-
+@EnableAutoConfiguration(exclude = {  DataSourceAutoConfiguration.class })
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(entityManagerFactoryRef = "PRIMARY_ENTITY_MANAGER_FACTORY",
@@ -44,9 +47,15 @@ public class PrimaryDataSourceConfig {
 
     @Bean(name = PRIMARY_DATASOURCE)
     @Primary
-    @ConfigurationProperties(prefix = PRIMARY_DATASOURCE)
+    //@ConfigurationProperties(prefix = PRIMARY_DATASOURCE)
+    @ConfigurationProperties
     public DataSource primaryDataSource() {
-        return DataSourceBuilder.create().build();
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        dataSourceBuilder.driverClassName("org.h2.Driver");
+        dataSourceBuilder.url("jdbc:h2:mem:test;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+        dataSourceBuilder.username("sa");
+        dataSourceBuilder.password("");
+        return dataSourceBuilder.build();
     }
 
     @Bean(name = PRIMARY_ENTITY_MANAGER)

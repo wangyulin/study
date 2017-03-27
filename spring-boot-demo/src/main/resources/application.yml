@@ -1,3 +1,6 @@
+
+
+
 # Primary datasource properties
 primary:
   datasource:
@@ -13,7 +16,7 @@ primary:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         show_sql: true
-        format_sql: true
+        format_sql: false
         generate_statistics: false
         id.new_generator_mappings: true
         order_updates: true
@@ -21,3 +24,4 @@ primary:
         max_fetch_depth: 2
         # hibernate.hbm2ddl.auto节点的值有几个create、create-drop、update、validate、none
         hbm2ddl.auto: create-drop
+        ddl-auto: validate
