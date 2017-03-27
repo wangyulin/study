@@ -1,0 +1,23 @@
+# Primary datasource properties
+primary:
+  datasource:
+    initialize: true
+    url: jdbc:mysql://wangyulin-test-host:3306/test
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    location: classpath:db/migration/primary
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        show_sql: true
+        format_sql: true
+        generate_statistics: false
+        id.new_generator_mappings: true
+        order_updates: true
+        default_batch_fetch_size: 4
+        max_fetch_depth: 2
+        # hibernate.hbm2ddl.auto节点的值有几个create、create-drop、update、validate、none
+        hbm2ddl.auto: create-drop

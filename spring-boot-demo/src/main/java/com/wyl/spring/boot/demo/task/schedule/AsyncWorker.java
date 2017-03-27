@@ -1,7 +1,10 @@
 package com.wyl.spring.boot.demo.task.schedule;
 
+import com.wyl.spring.boot.demo.model.User;
+import com.wyl.spring.boot.demo.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +21,7 @@ public class AsyncWorker{
         LOGGER.info("{} beginning work on {}", new Object[]{threadName, name});
         //System.out.println("   " + threadName + " beginning work on " + name);
         try {
+
             Thread.sleep(2000); // simulates work
 
         }catch (InterruptedException e) {

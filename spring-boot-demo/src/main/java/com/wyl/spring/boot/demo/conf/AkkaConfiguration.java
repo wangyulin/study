@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
+import java.sql.SQLException;
+
 import static com.wyl.spring.boot.demo.conf.SpringExtension.SPRING_EXTENSION_PROVIDER;
 
 /**
@@ -14,7 +18,7 @@ import static com.wyl.spring.boot.demo.conf.SpringExtension.SPRING_EXTENSION_PRO
  */
 @Configuration
 @ComponentScan
-public class AppConfiguration {
+public class AkkaConfiguration {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -25,4 +29,5 @@ public class AppConfiguration {
         SPRING_EXTENSION_PROVIDER.get(system).initialize(applicationContext);
         return system;
     }
+
 }
