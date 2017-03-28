@@ -1,13 +1,16 @@
 
-
+jasypt:
+  encryptor:
+    password: settlement-service
 
 # Primary datasource properties
+# /UlSVginvv33WmpWwdWRrg\=\=
 primary:
   datasource:
     initialize: true
     url: jdbc:mysql://wangyulin-test-host:3306/test
     username: root
-    password: 123456
+    password: /UlSVginvv33WmpWwdWRrg\=\=
     driver-class-name: com.mysql.jdbc.Driver
   flyway:
     location: classpath:db/migration/primary

@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class ScheduledTasks {
     final static Logger LOGGER = LoggerFactory.getLogger(ScheduledTasks.class);
+    final static Logger HELLO_LOGGER = LoggerFactory.getLogger("hello");
 
     private final AtomicInteger counter = new AtomicInteger();
 
@@ -22,6 +23,7 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRate = 10 * 1000, initialDelay = 1 * 1000)
     public void report1() {
+        HELLO_LOGGER.info("Hello logger ");
         for (int i = 0; i < 1; i++) {
             worker.work("reportCurrentTime1 - " + counter.incrementAndGet());
             try {

@@ -6,6 +6,7 @@
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
     <property name = "LOG_HOME" value = "/Users/wangyulin/workDir/miui/study/spring-boot-demo/logs"/>
     <property name = "LOG_FILE" value = "${LOG_HOME}/spring-boot-demo.log"/>
+    <property name = "HELLO_LOG" value = "${LOG_HOME}/hello.log"/>
 
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
@@ -42,9 +43,31 @@
         <append>true</append>
     </appender>
 
+    <appender name = "HELLO_FILE" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${HELLO_LOG}</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${HELLO_LOG}.%i</fileNamePattern>
+            <FileNamePattern>${HELLO_LOG}.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- 只保存最近3个月的文件 -->
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+        <triggeringPolicy class = "ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>1MB</MaxFileSize>
+        </triggeringPolicy>
+        <!-- true，日志被追加到文件结尾，如果是 false，清空现存文件 -->
+        <append>true</append>
+    </appender>
+
     <root level = "INFO">
         <appender-ref ref = "STDOUT"/>
         <appender-ref ref = "FILE"/>
     </root>
+
+    <logger name = "hello" level = "INFO">
+        <appender-ref ref = "HELLO_FILE"/>
+    </logger>
 
 </configuration>

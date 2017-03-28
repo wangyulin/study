@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -38,6 +39,9 @@ public class PrimaryDataSourceConfig {
     public static final String PRIMARY_ENTITY_MANAGER_FACTORY = "PRIMARY_ENTITY_MANAGER_FACTORY";
     public static final String PRIMARY_PLATFORM_TX_MANAGER = "PRIMARY_PLATFORM_TX_MANAGER";
 
+    @Autowired
+    private DataSourceConfig dataSourceConfig;
+
     @Bean(name = PRIMARY_JPA_PROPS)
     @Primary
     @ConfigurationProperties(PRIMARY_JPA_PROPS)
@@ -51,10 +55,10 @@ public class PrimaryDataSourceConfig {
     @ConfigurationProperties
     public DataSource primaryDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:test;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
-        dataSourceBuilder.username("sa");
-        dataSourceBuilder.password("");
+        dataSourceBuilder.driverClassName(dataSourceConfig.getDriverClassname());
+        dataSourceBuilder.url(dataSourceConfig.getUrl());
+        dataSourceBuilder.username(dataSourceConfig.getUserName());
+        dataSourceBuilder.password(dataSourceConfig.getPassword());
         return dataSourceBuilder.build();
     }
 
