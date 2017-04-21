@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AsyncWorker{
-    final static Logger LOGGER = LoggerFactory.getLogger(ScheduledTasks.class);
+    final static Logger LOGGER = LoggerFactory.getLogger(AsyncWorker.class);
 
     @Async
     public void work(String name) {
