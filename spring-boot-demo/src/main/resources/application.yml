@@ -28,3 +28,4 @@ primary:
         # hibernate.hbm2ddl.auto节点的值有几个create、create-drop、update、validate、none
         hbm2ddl.auto: create-drop
         ddl-auto: validate
+        ejb.interceptor: com.wyl.spring.boot.demo.interceptor.MyTestInterceptor

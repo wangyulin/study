@@ -55,7 +55,8 @@
 		<module>springdemo</module>
         <module>comment</module>
         <module>spring-boot-demo</module>
-    </modules>
+    <module>miui-theme-utils</module>
+  </modules>
 
 	<dependencyManagement>
 		<dependencies>
