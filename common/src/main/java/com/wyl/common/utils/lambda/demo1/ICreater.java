@@ -1,4 +1,7 @@
 package com.wyl.common.utils.lambda.demo1;
 
-public interface ICreater {
+import java.util.List;
+@FunctionalInterface
+public interface ICreater<T extends List<?>> {
+    T create();
 }

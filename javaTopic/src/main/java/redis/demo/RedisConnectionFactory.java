@@ -1,11 +1,11 @@
-package com.wyl.utils.redis.demo;
-
-import java.util.HashSet;
-import java.util.Set;
+package redis.demo;
 
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class RedisConnectionFactory {
 	

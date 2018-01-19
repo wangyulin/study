@@ -8,7 +8,7 @@ import java.net.Socket;
  */
 public class CheckoutPort {
 
-    private static final String host = "wangyulin-test-host";
+    private static final String host = "127.0.0.1";
 
     public static void main(String[] args) {
         boolean result = checkoutPort(50071);

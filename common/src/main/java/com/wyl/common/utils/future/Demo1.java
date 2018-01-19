@@ -1,6 +1,11 @@
 package com.wyl.common.utils.future;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Predicate;
 
 /**
  * Created by wangyulin on 21/04/2017.
@@ -8,7 +13,7 @@ import java.util.concurrent.*;
 public class Demo1 {
 
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newCachedThreadPool();
+        ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
         Task task = new Task();
         Future<Integer> result = executor.submit(task);
         executor.shutdown();

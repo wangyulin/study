@@ -1,12 +1,12 @@
-package com.wyl.utils.redis.demo;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+package redis.demo;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class DemoUtils<syncronized> {
 	

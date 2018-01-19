@@ -1,7 +1,10 @@
 package com.wyl.common.utils.base;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by wangyulin on 10/04/2017.
@@ -28,7 +31,13 @@ public class Demo1 {
             System.out.println();
             start += pageSize;
         }
-        System.out.println();
+
+        List<String> res = Arrays.asList( "a", "e", "d" );
+        System.out.println(res);
+        res.sort(( e1, e2 ) -> e1.compareTo( e2 ));
+        System.out.println(res);
+
+
     }
 
 }

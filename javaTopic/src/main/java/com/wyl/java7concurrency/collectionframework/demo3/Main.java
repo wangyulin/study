@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<>();
 
-        Thread[] taskThreads = new Thread[1];
+        Thread[] taskThreads = new Thread[2];
 
         for (int i = 0; i < taskThreads.length; i++) {
             Task task = new Task(i, queue);

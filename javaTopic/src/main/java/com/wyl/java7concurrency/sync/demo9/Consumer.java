@@ -30,7 +30,7 @@ public class Consumer implements Runnable {
                 e.printStackTrace();
             }
 
-            System.out.printf("Consumer: %d\n", buffer.size());
+            //System.out.printf("Consumer: %d --------\n", buffer.size());
 
             for (int j = 0; j < 10; j++) {
                 String message = buffer.get(0);

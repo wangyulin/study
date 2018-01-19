@@ -1,4 +1,4 @@
-package com.wyl.dp.proxy;
+package com.wyl.dp.proxy.demo1;
 
 class RealSubject implements Subject {
     public void request(){

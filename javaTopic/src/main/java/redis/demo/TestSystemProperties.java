@@ -1,9 +1,7 @@
-package com.wyl.utils.redis.demo;
+package redis.demo;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Properties;
-import java.util.Set;
 
 public class TestSystemProperties {
 

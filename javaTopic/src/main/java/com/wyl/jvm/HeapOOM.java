@@ -39,7 +39,7 @@ public class HeapOOM {
         v = new String("abcdefg");
         while(true) {
             list.add(new OOMObjcet());
-            Thread.sleep(10);
+            //Thread.sleep(10);
         }
     }
 

@@ -14,8 +14,12 @@ public class Main {
         ThreadLocalRandom.current();
 
         Math.random();
-        Random r = new Random();
-        System.out.println(r.nextInt(10) + " .");
+        Random r1 = new Random(10);
+        System.out.println(r1.nextInt(10) + " .");
+
+        Random r2 = new Random(10);
+        System.out.println(r2.nextInt(10) + " .");
+
 
         for (int i = 0; i < 3; i++) {
             TaskLocalRandom task = new TaskLocalRandom();

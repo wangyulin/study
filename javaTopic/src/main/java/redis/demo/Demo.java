@@ -1,10 +1,8 @@
-package com.wyl.utils.redis.demo;
+package redis.demo;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import redis.clients.jedis.JedisCluster;
 
 public class Demo {
 	

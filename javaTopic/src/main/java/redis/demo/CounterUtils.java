@@ -1,10 +1,10 @@
-package com.wyl.utils.redis.demo;
+package redis.demo;
+
+import redis.clients.jedis.JedisCluster;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import redis.clients.jedis.JedisCluster;
 
 public class CounterUtils {
 	

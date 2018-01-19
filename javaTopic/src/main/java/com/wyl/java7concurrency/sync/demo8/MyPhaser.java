@@ -8,6 +8,9 @@ import java.util.concurrent.Phaser;
 public class MyPhaser extends Phaser {
 
     protected boolean onAdvance(int phase, int registeredParties) { //在每个阶段执行完成后回调的方法
+        System.out.println("-------------------");
+        System.out.println(registeredParties);
+        System.out.println("-------------------");
         switch (phase) {
             case 0:
                 return studentArrived();

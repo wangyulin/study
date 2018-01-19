@@ -1,4 +1,4 @@
-package com.wyl.dp.proxy;
+package com.wyl.dp.proxy.demo1;
 
 public class ProxyTest {
 

@@ -1,5 +1,7 @@
 package com.wyl.java7concurrency.collectionframework.demo1;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.DelayQueue;
@@ -12,6 +14,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class Demo {
 
     public static void main(String[] args) {
+        InputStream is;
+        BufferedInputStream bs;
         ConcurrentLinkedDeque concurrentLinkedDeque;
         LinkedBlockingDeque linkedBlockingDeque;
         DelayQueue delayQueue;

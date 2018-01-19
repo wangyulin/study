@@ -1,4 +1,4 @@
-package com.wyl.utils.redis.demo;
+package redis.demo;
 
 import java.util.Calendar;
 import java.util.Date;

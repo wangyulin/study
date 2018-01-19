@@ -9,6 +9,9 @@ import java.util.concurrent.TimeUnit;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        String aaa = "TEST";
+        aaa.intern();
+        Object obj;
         MyWorkThreadFactory factory = new MyWorkThreadFactory();
         ForkJoinPool pool = new ForkJoinPool(4, factory, null, false);
         int array[] = new int[100000];

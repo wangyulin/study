@@ -41,6 +41,17 @@ public class Main {
         }
 
         System.out.printf("Main: End of the example\n");
+
+        AtomicIntegerArray array = new AtomicIntegerArray(10);
+        for (int i = 0; i < array.length(); i++) {
+            array.incrementAndGet(i);
+            array.incrementAndGet(i);
+        }
+
+        for (int i = 0; i < array.length(); i++) {
+            System.out.println("--> : " + i + " : " + array.get(i));
+        }
+
     }
 
 }

@@ -21,15 +21,25 @@ public class OrderDataReader {
 
     public static void main(String[] args) throws IOException {
         //String filePath = "/Users/wangyulin/work/order_2017_04_22";
-        String filePath = "/Users/wangyulin/work/order_2016_02_06";
+        String filePath = "/Users/wangyulin/work/order_2014_03_19";
         List<String> lines = Files.readAllLines(Paths.get(filePath), Charset.defaultCharset());
 
         int counter = 0;
         for(String line : lines) {
-            List<String> cols = patternMatching(line);
+            List<String> cols = null;
+            try {
+                cols = patternMatching(line);
+            } catch (Exception e) {
+                System.out.println("Error Data : " + line);
+            }
             Object[] objectList = cols.toArray();
             String[] stringArray =  Arrays.copyOf(objectList,objectList.length,String[].class);
-            createOrderInfo(stringArray, cols);
+            if(stringArray.length == 18) {
+
+            } else {
+                //System.out.println("Error Data : " + cols);
+            }
+            //createOrderInfo(stringArray, cols);
 
             /*if(cols.size() == 23) {
                 //System.err.println(cols.size());
