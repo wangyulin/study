@@ -1,15 +1,15 @@
 package com.wyl.utils.redis;
 
-import org.springframework.core.convert.converter.Converter;
+/*import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.serializer.support.DeserializingConverter;
 import org.springframework.core.serializer.support.SerializingConverter;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.SerializationException;
+import org.springframework.data.redis.serializer.SerializationException;*/
 
 /**
  * Created by wangyulin on 01/03/2017.
  */
-public class RedisObjectSerializer implements RedisSerializer<Object> {
+/*public class RedisObjectSerializer implements RedisSerializer<Object> {
 
     private Converter<Object, byte[]> serializer = new SerializingConverter();
     private Converter<byte[], Object> deserializer = new DeserializingConverter();
@@ -43,4 +43,4 @@ public class RedisObjectSerializer implements RedisSerializer<Object> {
     private boolean isEmpty(byte[] data) {
         return (data == null || data.length == 0);
     }
-}
+}*/

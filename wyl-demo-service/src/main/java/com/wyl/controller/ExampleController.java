@@ -10,8 +10,6 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -30,8 +28,8 @@ public class ExampleController {
     @Autowired
     private ExampleService exampleService;
 
-    @Autowired
-    private StringRedisTemplate template;
+    //@Autowired
+    //private StringRedisTemplate template;
 
     @Autowired
     private UserRepository userRepository;

@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.wyl.spring.boot.demo.conf.SpringExtension.SPRING_EXTENSION_PROVIDER;
 import static akka.pattern.Patterns.ask;
+
 /**
  * Created by wangyulin on 24/03/2017.
  */

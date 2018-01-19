@@ -1,5 +1,7 @@
 package com.wyl.rxjava.observer;
 
+import java.util.Vector;
+
 /**
  * Created by wangyulin on 22/06/2017.
  */

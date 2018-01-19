@@ -5,7 +5,7 @@ spring:
     zookeeper:
       connect-string: wangyulin-test-host:2181,wangyulin-test-host:2182,wangyulin-test-host:2183
     discovery:
-      enabled: false #服务注册开关
+      enabled: true #服务注册开关
       dependencies:
           newsletter:
 #            path: /path/where/newsletter/has/registered/in/zookeeper

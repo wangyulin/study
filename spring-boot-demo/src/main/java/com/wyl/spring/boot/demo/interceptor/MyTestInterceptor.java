@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.UUID;
 
+import org.springframework.aop.interceptor.CustomizableTraceInterceptor;
+
 /**
  * Created by wangyulin on 04/05/2017.
  */
@@ -17,9 +19,16 @@ public class MyTestInterceptor extends EmptyInterceptor {
 
     public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
         test_param.set("100" + UUID.randomUUID());
-        LOGGER.info("TAG_ entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
-        LOGGER.info("TAG_ entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
+        LOGGER.info("TAG_onSave entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
+        LOGGER.info("TAG_onSave entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
         return false;
+    }
+
+    @Override
+    public boolean onLoad(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
+        LOGGER.info("TAG_onLoad entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
+        LOGGER.info("TAG_onLoad entity: {}, id: {}, state : {}, propertyNames: {}, types: {}", new Object[]{entity, id, state, propertyNames, types});
+        return super.onLoad(entity, id, state, propertyNames, types);
     }
 
     public String onPrepareStatement(String sql) {

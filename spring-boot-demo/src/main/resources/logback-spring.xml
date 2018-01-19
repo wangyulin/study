@@ -61,13 +61,21 @@
         <append>true</append>
     </appender>
 
-    <root level = "INFO">
+    <logger name="org.hibernate.type" level="ERROR" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!--<logger name="org.hibernate.stat" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>-->
+
+    <root level = "debug">
         <appender-ref ref = "STDOUT"/>
         <appender-ref ref = "FILE"/>
     </root>
 
-    <logger name = "hello" level = "INFO">
+    <!--<logger name = "hello" level = "INFO">
         <appender-ref ref = "HELLO_FILE"/>
-    </logger>
+    </logger>-->
 
 </configuration>

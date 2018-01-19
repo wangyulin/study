@@ -22,10 +22,11 @@ primary:
         format_sql: false
         generate_statistics: false
         id.new_generator_mappings: true
+        use_sql_comments: true
         order_updates: true
         default_batch_fetch_size: 4
         max_fetch_depth: 2
         # hibernate.hbm2ddl.auto节点的值有几个create、create-drop、update、validate、none
-        hbm2ddl.auto: create-drop
+        hbm2ddl.auto: none
         ddl-auto: validate
         ejb.interceptor: com.wyl.spring.boot.demo.interceptor.MyTestInterceptor

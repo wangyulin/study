@@ -1,5 +1,6 @@
 package com.wyl.conf;
 
+/*
 import com.wyl.model.Name;
 import com.wyl.utils.redis.RedisObjectSerializer;
 import org.springframework.context.annotation.Bean;
@@ -8,14 +9,15 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.*;
+*/
 
 /**
  * Created by wangyulin on 01/03/2017.
  */
-@Configuration
+//@Configuration
 public class RedisConfig {
 
-    @Bean
+    /*@Bean
     JedisConnectionFactory jedisConnectionFactory() {
         return new JedisConnectionFactory();
     }
@@ -27,6 +29,6 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setValueSerializer(new RedisObjectSerializer());
         return template;
-    }
+    }*/
 
 }
