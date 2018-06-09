@@ -8,7 +8,7 @@ import java.util.Stack;
 public class StackDemo {
 
     public static void main(String[] args) {
-        Stack<String> st = new Stack<String>();
+        Stack<String> st = new Stack<>();
         st.push("A");
         st.push("B");
         st.push("C");

@@ -13,6 +13,14 @@ public class HashCodeDemo {
 		System.out.println(s.equals(c));
 		System.out.println(s.hashCode());
 		System.out.println(c.hashCode());
+		float f1 = 1.123001f;
+		double d1 = f1;
+		System.out.println(d1);
+
+		double d2 = 1.1000001;
+		float f2 = (float) d2;
+		System.out.println(f2);
+
 	}
 
 }

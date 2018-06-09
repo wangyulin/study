@@ -1,7 +1,8 @@
-package com.wyl.model;
+package com.wyl.pool.model;
 
 import com.wyl.listener.AuditListener;
-import com.wyl.model.constants.Gender;
+import com.wyl.model.Gender;
+import com.wyl.model.Name;
 
 import javax.persistence.*;
 import java.util.Date;

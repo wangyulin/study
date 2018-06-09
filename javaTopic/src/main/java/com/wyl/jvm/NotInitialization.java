@@ -35,13 +35,13 @@ public class NotInitialization{
 
     public static void main(String[] args) {
         //1
-        //System.out.println(SubClass.value);
+        System.out.println(SubClass.value);
 
         //2
         //SuperClass[] sc = new SuperClass[10];
 
         //3
-        System.out.println(ConstClass.HELLOWORLD);
+        //System.out.println(ConstClass.HELLOWORLD);
     }
 
 }

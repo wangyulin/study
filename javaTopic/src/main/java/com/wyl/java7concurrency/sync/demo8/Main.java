@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         MyPhaser phaser = new MyPhaser();
+
         StudentTask[] studentTask = new StudentTask[5];
         for (int i = 0; i < studentTask.length; i++) {
             studentTask[i] = new StudentTask(phaser);

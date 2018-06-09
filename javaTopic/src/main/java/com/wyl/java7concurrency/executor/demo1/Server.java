@@ -25,7 +25,8 @@ public class Server {
     }
 
     public void endServer() {
-        executor.shutdown();
+        //executor.shutdown();
+        executor.shutdownNow();
     }
 
 }

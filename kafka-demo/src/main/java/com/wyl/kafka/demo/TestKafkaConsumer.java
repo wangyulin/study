@@ -73,7 +73,7 @@ public class TestKafkaConsumer {
         TestKafkaConsumer consumer;
         try {
             MessageExecutor executor = System.out::println;
-            consumer = new TestKafkaConsumer("testtopic", 2, executor);
+            consumer = new TestKafkaConsumer("ATopic", 2, executor);
             consumer.start();
         } catch (IOException e) {
             e.printStackTrace();

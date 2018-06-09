@@ -13,9 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class HashMapDemo {
 
     public static void main(String[] args) {
-    	LinkedHashMap set;
-    	TreeMap tmap;
-    	HashMap<String, String> map = new HashMap<String, String>();
+    	HashMap<String, String> map = new HashMap<>();
         System.out.println(map.put("语文","1"));
         System.out.println(map.put("语文","1"));
         map.put("数学","2");
@@ -26,8 +24,7 @@ public class HashMapDemo {
         map.put("物理","7");
         map.put("体育","8");
         map.put("美术","2");
-        
-        map.get("");
+        map.put(null,null);
 
         for(Entry<String, String> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());

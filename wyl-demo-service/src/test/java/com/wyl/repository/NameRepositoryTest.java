@@ -2,8 +2,8 @@ package com.wyl.repository;
 
 import com.wyl.ApplicationServiceBoot;
 import com.wyl.model.Name;
-import com.wyl.model.User;
-import com.wyl.model.constants.Gender;
+import com.wyl.pool.model.User;
+import com.wyl.model.Gender;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

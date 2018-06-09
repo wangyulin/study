@@ -25,6 +25,7 @@ public class TestKafkaProducer implements AutoCloseable {
             return;
         }
         KeyedMessage<String, String> km = new KeyedMessage<>(topicName, message);
+        new KeyedMessage<>(topicName, "key", "", message);
         producer.send(km);
     }
 
@@ -39,7 +40,9 @@ public class TestKafkaProducer implements AutoCloseable {
         try (TestKafkaProducer kafka = new TestKafkaProducer()) {
             int i = 0;
             while (true) {
-                kafka.send("testtopic", "Hello Java Appliaction!!");
+                String msg = "Hello Java Appliaction!! " + i;
+                kafka.send("ATopic", msg);
+                System.out.println(msg);
                 i++;
                 Thread.sleep(2000);
             }

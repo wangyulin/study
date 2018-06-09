@@ -33,7 +33,9 @@ public class Task extends RecursiveAction {
             System.out.printf("Task: Pending tasks: %s\n", getQueuedTaskCount());
             Task t1 = new Task(products, first, middle + 1, increment);
             Task t2 = new Task(products, middle + 1, last, increment);
-            invokeAll(t1, t2);
+            //invokeAll(t1, t2);
+            t1.fork();
+            t2.compute();
         }
     }
 

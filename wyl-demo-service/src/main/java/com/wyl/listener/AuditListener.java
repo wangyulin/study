@@ -1,6 +1,6 @@
 package com.wyl.listener;
 
-import com.wyl.model.User;
+import com.wyl.pool.model.User;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;

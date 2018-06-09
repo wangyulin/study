@@ -22,6 +22,7 @@ public class Main {
 			Thread t=new Thread(threadGroup,task);
 			t.start();
 		}
+		threadGroup.interrupt();
 	}
 
 }

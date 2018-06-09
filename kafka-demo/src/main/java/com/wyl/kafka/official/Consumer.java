@@ -1,22 +1,22 @@
 package com.wyl.kafka.official;
 
-/*import com.wyl.kafka.order.SettlementMsg;
+import com.wyl.kafka.order.model.SettlementMsg;
 import kafka.utils.ShutdownableThread;
 import org.apache.commons.lang.SerializationUtils;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 
 import java.util.Collections;
-import java.util.Properties;*/
+import java.util.Properties;
 /**
  * Created by wangyulin on 13/03/2017.
  */
-/*
+
 
 public class Consumer extends ShutdownableThread {
-    private final KafkaConsumer<Integer, byte[]> consumer;
+    private KafkaConsumer<Integer, byte[]> consumer = null;
     private final String topic;
 
     public Consumer(String topic) {
@@ -32,6 +32,9 @@ public class Consumer extends ShutdownableThread {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.ByteArrayDeserializer");
 
         consumer = new KafkaConsumer<>(props);
+
+        TopicPartition p = new TopicPartition("test2",2);
+        consumer.seek(p, 5);
         this.topic = topic;
     }
 
@@ -57,4 +60,4 @@ public class Consumer extends ShutdownableThread {
         return false;
     }
 }
-*/
+

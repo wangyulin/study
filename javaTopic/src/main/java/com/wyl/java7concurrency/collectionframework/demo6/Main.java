@@ -31,11 +31,12 @@ public class Main {
 
         System.out.printf("Main: Size of the map: %d\n", map.size());
 
-        Map.Entry<String, Contact> element;
-        Contact contact;
+        Contact c = new Contact("A", String.valueOf(10));
+        map.put(10 + c.getPhone(), c);
 
-        element = map.firstEntry();
-        contact = element.getValue();
+        Map.Entry<String, Contact> element = map.firstEntry();
+        Contact contact = element.getValue();
+
         System.out.printf("Main: First Entry: %s : %s\n", contact.getName(), contact.getPhone());
 
         element = map.lastEntry();

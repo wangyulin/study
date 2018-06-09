@@ -1,10 +1,7 @@
 package com.wyl.service.impl;
 
-import com.wyl.ApplicationServiceBoot;
 import com.wyl.model.Name;
 import com.wyl.service.ExampleService;
-import com.wyl.utils.eventbus.DataEvent;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

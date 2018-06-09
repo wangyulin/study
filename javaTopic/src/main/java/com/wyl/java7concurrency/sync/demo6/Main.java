@@ -12,9 +12,8 @@ public class Main {
         threadConference.start();
 
         for (int i = 0; i < 10; i++) {
-            Participant p = new Participant(videoconference, "Participant " + i);
-            Thread t = new Thread(p);
-            t.start();
+            new Thread(new Participant(videoconference, "Participant " + i))
+                    .start();
         }
     }
 

@@ -3,7 +3,11 @@ package com.wyl.common.utils.base;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.junit.Test;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -144,9 +148,11 @@ public class LoopBenchmarkMain {
     @Warmup(iterations = 5)
     public int streamMaxInteger() {
         long startTime = new Date().getTime();
-        Optional<Integer> max = integers.stream().reduce(Integer::max);
+        //Optional<Integer> max = integers.stream().reduce(Integer::max);
+        int max_2 = integers.stream().mapToInt(x -> x.intValue()).max().getAsInt();
         System.out.println("====streamMaxInteger : " + (new Date().getTime() - startTime));
-        return max.get();
+        //return max.get();
+        return max_2;
     }
 
     @Benchmark

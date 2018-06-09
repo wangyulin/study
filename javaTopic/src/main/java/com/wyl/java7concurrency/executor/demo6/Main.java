@@ -37,7 +37,7 @@ public class Main {
         for (int i = 0; i < resultTasks.length; i++) {
             try {
                 if(!resultTasks[i].isCancelled()) {
-                    System.out.printf("%s\n", resultTasks[i].get());
+                    System.out.printf("%s ====\n", resultTasks[i].get());
                 }
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();

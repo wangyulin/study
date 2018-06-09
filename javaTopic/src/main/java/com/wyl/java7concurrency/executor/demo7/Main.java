@@ -8,8 +8,8 @@ import java.util.concurrent.*;
 public class Main {
 
     public static void main(String[] args) {
-        ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
-        CompletionService<String> service = new ExecutorCompletionService<String>(executor);
+        ExecutorService executor = Executors.newCachedThreadPool();
+        CompletionService<String> service = new ExecutorCompletionService<>(executor);
 
         ReportRequest faceRequest = new ReportRequest("Face", service);
         ReportRequest onlineRequest = new ReportRequest("Online", service);

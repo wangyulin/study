@@ -10,7 +10,7 @@ import java.nio.CharBuffer;
  */
 public class BufferCharView {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ByteBuffer byteBuffer = ByteBuffer.allocate(7).order(ByteOrder.BIG_ENDIAN);
         CharBuffer charBuffer = byteBuffer.asCharBuffer();
 

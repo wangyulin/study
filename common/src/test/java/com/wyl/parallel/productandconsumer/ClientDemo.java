@@ -21,6 +21,7 @@ public class ClientDemo {
         Consumer c3 = new Consumer ( queue );
 
         ExecutorService es = Executors.newCachedThreadPool ();
+
         es.execute ( p1 );
         es.execute ( p2 );
         es.execute ( p3 );
@@ -29,7 +30,7 @@ public class ClientDemo {
         es.execute ( c2 );
         es.execute ( c3 );
 
-        Thread.sleep ( 10 * 1000 );
+        //Thread.sleep ( 10 * 1000 );
 
         p1.stop ();
         p2.stop ();

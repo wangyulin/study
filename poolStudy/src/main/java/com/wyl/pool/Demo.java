@@ -7,8 +7,8 @@ public class Demo {
 
 	public static void main(String[] args) throws Exception {
 		//创建一个对象池 
-        GenericKeyedObjectPool<Object, Object> pool = 
-        		new GenericKeyedObjectPool<Object, Object>(new BaseKeyedPoolableObjectFactory<Object, Object>() { 
+        GenericKeyedObjectPool<Object, Object> pool =
+        		new GenericKeyedObjectPool<Object, Object>(new BaseKeyedPoolableObjectFactory<Object, Object>() {
         	@Override    
         	public Object makeObject(Object o) throws Exception { 
                         return o; 

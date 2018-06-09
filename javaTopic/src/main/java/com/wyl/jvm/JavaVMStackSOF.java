@@ -12,7 +12,7 @@ public class JavaVMStackSOF {
         stacklength ++;
 
         try {
-            Thread.sleep(0);
+            Thread.sleep(30);
             stackLeak();
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -1,6 +1,5 @@
 package com.wyl.ds;
 
-import java.util.Collections;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentHashMapDemo {

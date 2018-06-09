@@ -1,20 +1,15 @@
 package com.wyl.controller;
 
+import com.wyl.model.Gender;
 import com.wyl.model.Name;
-import com.wyl.model.User;
-import com.wyl.model.constants.Gender;
+import com.wyl.pool.model.User;
 import com.wyl.repository.NameRepository;
 import com.wyl.repository.UserRepository;
 import com.wyl.service.ExampleService;
-import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 /**

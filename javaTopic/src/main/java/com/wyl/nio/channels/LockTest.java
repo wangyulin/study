@@ -33,10 +33,9 @@ public class LockTest {
     private IntBuffer indexBuffer = buffer.asIntBuffer();
     private Random rand = new Random();
 
-    public static void main (String [] argv)
-            throws Exception {
+    public static void main (String [] argv) throws Exception {
         boolean writer = false;
-        String filename;
+        String fileName;
 
         if (argv.length != 2) {
             System.out.println ("Usage: [ -r | -w ] filename");
@@ -44,27 +43,24 @@ public class LockTest {
         }
 
         writer = argv [0].equals ("-w");
-        filename = argv [1];
+        fileName = argv [1];
 
-        RandomAccessFile raf = new RandomAccessFile (filename,
-                (writer) ? "rw" : "r");
+        RandomAccessFile raf = new RandomAccessFile (fileName, (writer) ? "rw" : "r");
         FileChannel fc = raf.getChannel();
 
         LockTest lockTest = new LockTest();
 
         if (writer) {
-            lockTest.doUpdates (fc);
+            lockTest.doUpdates(fc);
         } else {
-            lockTest.doQueries (fc);
+            lockTest.doQueries(fc);
         }
     }
 
     // ----------------------------------------------------------------
-
     // Simulate a series of read-only queries while
     // holding a shared lock on the index area
-    void doQueries (FileChannel fc)
-            throws Exception {
+    void doQueries (FileChannel fc) throws Exception {
         while (true) {
             println ("trying for shared lock...");
             FileLock lock = fc.lock (INDEX_START, INDEX_SIZE, true);
@@ -94,13 +90,11 @@ public class LockTest {
 
     // Simulate a series of updates to the index area
     // while holding an exclusive lock
-    void doUpdates (FileChannel fc)
-            throws Exception {
+    void doUpdates (FileChannel fc) throws Exception {
         while (true) {
             println ("trying for exclusive lock...");
 
-            FileLock lock = fc.lock (INDEX_START,
-                    INDEX_SIZE, false);
+            FileLock lock = fc.lock (INDEX_START, INDEX_SIZE, false);
 
             updateIndex (fc);
 
@@ -114,8 +108,7 @@ public class LockTest {
     // write new values to the index slots
     private int idxval = 1;
 
-    private void updateIndex (FileChannel fc)
-            throws Exception {
+    private void updateIndex (FileChannel fc) throws Exception {
         // "indexBuffer" is an int view of "buffer"
         indexBuffer.clear();
 

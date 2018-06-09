@@ -1,8 +1,5 @@
 package com.wyl.java7concurrency.sync.demo5;
 
-import com.sun.org.apache.regexp.internal.RE;
-import com.wyl.java7concurrency.threadmanagement.demo5.WriteTask;
-
 /**
  * Created by wangyulin on 22/08/2017.
  */

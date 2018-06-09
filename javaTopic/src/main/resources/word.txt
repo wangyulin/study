@@ -1,0 +1,5 @@
+Published RFCs never change. Although every published RFC has been
+submitted to careful proofreading by the RFC Editor and the author(s),
+errors do sometimes go undetected. Technical Errata are errors in
+the technical content. Editorial Errata are spelling, grammar,
+punctuation, or syntax errors that do not affect the technical meaning.

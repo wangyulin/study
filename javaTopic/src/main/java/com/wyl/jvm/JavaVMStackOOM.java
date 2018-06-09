@@ -1,5 +1,7 @@
 package com.wyl.jvm;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by wangyulin on 4/7/16.
  * -Xss2m
@@ -8,7 +10,11 @@ public class JavaVMStackOOM {
 
     private void dontStop() {
         while(true) {
-
+            try {
+                TimeUnit.MICROSECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

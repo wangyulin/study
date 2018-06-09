@@ -7,8 +7,7 @@ import java.nio.CharBuffer;
  * Created by wangyulin on 3/8/16.
  */
 public class BufferFillDrain {
-    public static void main(String[] argv)
-            throws Exception {
+    public static void main(String[] argv) {
         CharBuffer buffer = CharBuffer.allocate(100);
         System.out.println(ByteOrder.nativeOrder().toString());
         while (fillBuffer(buffer)) {

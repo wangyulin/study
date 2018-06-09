@@ -13,19 +13,9 @@ public class Main {
     public static void syncClass() {
         B b = new B();
 
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                b.m();
-            }
-        });
+        Thread t1 = new Thread(() -> b.m());
 
-        Thread t2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                b.n();
-            }
-        });
+        Thread t2 = new Thread(() -> b.n());
 
         t1.start();
         t2.start();

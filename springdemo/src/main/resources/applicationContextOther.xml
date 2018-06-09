@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation=
+        "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+
+    <bean id="cat" class="com.wyl.spring.demo.soundsystem.other.AnimalFactory" factory-method="getAnimal">
+        <constructor-arg value="cat" />
+        <property name="msg" value="猫猫" />
+    </bean>
+
+    <bean id="dog" class="com.wyl.spring.demo.soundsystem.other.AnimalFactory" factory-method="getAnimal">
+        <constructor-arg value="dog" />
+        <property name="msg" value="狗狗" />
+    </bean>
+-->
+
+    <!-- -->
+    <!-- 先配置工厂类 -->
+    <bean id="animalFactory" class="com.wyl.spring.demo.soundsystem.other.AnimalFactory" />
+
+    <!-- 这里使用factory-bean指定实例工厂类对象 -->
+    <bean id="cat1" factory-bean="animalFactory" factory-method="getAnimal">
+        <!-- 同样指定factory-method的参数 -->
+        <constructor-arg value="cat" />
+        <property name="msg" value="猫猫" />
+    </bean>
+
+    <bean id="dog1" factory-bean="animalFactory" factory-method="getAnimal">
+        <constructor-arg value="dog" />
+        <property name="msg" value="狗狗" />
+    </bean>
+
+</beans>

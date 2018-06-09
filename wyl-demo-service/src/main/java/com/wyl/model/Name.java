@@ -1,5 +1,7 @@
 package com.wyl.model;
 
+import com.wyl.pool.model.User;
+
 import javax.persistence.*;
 
 /**

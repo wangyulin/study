@@ -21,6 +21,7 @@ public class ThriftDemo {
             TProtocol protocol = new TBinaryProtocol(transport);
             Hello.Client client = new Hello.Client(protocol);
             // 调用服务的 helloVoid 方法
+            client.helloInt(1);
             System.out.println(client.helloString("World !"));
             //client.helloNull();
             

@@ -42,6 +42,8 @@
 		<rxjava2.version>2.1.0</rxjava2.version>
 		<commons-pool2.version>2.4.2</commons-pool2.version>
 		<lombok.version>1.16.14</lombok.version>
+		<netty.version>4.1.24.Final</netty.version>
+		<avro.version>1.8.1</avro.version>
 	</properties>
 
 	<modules>
@@ -52,7 +54,6 @@
 		<module>serverDemo</module>
 		<module>akka-study</module>
 		<module>backend-service</module>
-		<module>hadoop-demo</module>
 		<module>kafka-demo</module>
 		<module>zookeeper-demo</module>
 		<module>springdemo</module>
@@ -62,9 +63,12 @@
         <module>javaTopic</module>
 		<module>wyl-demo-service</module>
         <module>rxjava</module>
-        <module>pool-demo</module>
 		<module>springframework-source-study</module>
-	</modules>
+		<module>spring-aop</module>
+        <module>ds</module>
+		<module>utils</module>
+        <module>bigdata</module>
+    </modules>
 
 	<dependencyManagement>
 		<dependencies>
@@ -260,6 +264,11 @@
 				<version>${kafka.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro</artifactId>
+				<version>${avro.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
@@ -311,6 +320,11 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

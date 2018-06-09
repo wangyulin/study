@@ -1,10 +1,9 @@
 package com.wyl.repository;
 
-import com.wyl.model.User;
+import com.wyl.pool.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**

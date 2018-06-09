@@ -2,7 +2,6 @@ package com.wyl.springframework.alias.demo;
 
 import org.springframework.core.SimpleAliasRegistry;
 import org.springframework.util.Assert;
-import org.springframework.util.StringValueResolver;
 
 import java.util.Arrays;
 

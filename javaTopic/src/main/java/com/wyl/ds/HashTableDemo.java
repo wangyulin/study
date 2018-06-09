@@ -6,10 +6,10 @@ import java.util.WeakHashMap;
 public class HashTableDemo {
 
 	public static void main(String[] args) {
-		Hashtable<String, String> ht = new Hashtable<String,String>();
-		ht.put("", "");
-		ht.put("A", null);
-		ht.get("");
+		Hashtable<String, String> ht = new Hashtable<>();
+		//ht.put("", "");
+		ht.put("A", "A1");
+		System.out.println(ht.get("A"));
 		WeakHashMap w;
 	}
 

@@ -19,10 +19,9 @@ class MyInvocatioHandler implements InvocationHandler {
         return result;
     }
 
-    // 生成代理对象
+    /** 生成代理对象 */
     public Object getProxy() {
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
         Class<?>[] interfaces = target.getClass().getInterfaces();
-        return Proxy.newProxyInstance(loader, interfaces, this);
+        return Proxy.newProxyInstance(MyInvocatioHandler.class.getClassLoader(), interfaces, this);
     }
 }

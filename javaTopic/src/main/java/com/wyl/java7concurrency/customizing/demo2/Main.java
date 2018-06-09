@@ -16,7 +16,7 @@ public class Main {
         Executors.newCachedThreadPool();
 
         for (int i = 0; i < 4; i++) {
-            MyPriorityTask task = new MyPriorityTask("Task " + i, 4 - i);
+            MyPriorityTask task = new MyPriorityTask("Task " + i, i);
             executor.execute(task);
         }
 
@@ -26,8 +26,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 8; i++) {
-            MyPriorityTask task = new MyPriorityTask("Task " + i, 8 - i);
+        for (int i = 4; i < 8; i++) {
+            MyPriorityTask task = new MyPriorityTask("Task " + i, i);
             executor.execute(task);
         }
 
