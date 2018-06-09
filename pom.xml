@@ -49,7 +49,6 @@
 	<modules>
 		<module>datasourceTM</module>
 		<module>common</module>
-		<module>poolStudy</module>
 		<module>httpclient-demo</module>
 		<module>serverDemo</module>
 		<module>akka-study</module>
