@@ -65,7 +65,6 @@
 		<module>springframework-source-study</module>
 		<module>spring-aop</module>
         <module>ds</module>
-		<module>utils</module>
         <module>bigdata</module>
     </modules>
 
