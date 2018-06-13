@@ -52,7 +52,6 @@
 		<module>httpclient-demo</module>
 		<module>serverDemo</module>
 		<module>akka-study</module>
-		<module>backend-service</module>
 		<module>kafka-demo</module>
 		<module>zookeeper-demo</module>
 		<module>springdemo</module>
