@@ -25,8 +25,8 @@ public class ApplicationServiceBoot {
     public static EventBus eventBus = new EventBus("test");
 
     public static void main( String[] args ) {
-        EventListener listener = new EventListener();
-        eventBus.register(listener);
+        //EventListener listener = new EventListener();
+        //eventBus.register(listener);
         new SpringApplicationBuilder(ApplicationServiceBoot.class).web(true).run(args);
     }
 

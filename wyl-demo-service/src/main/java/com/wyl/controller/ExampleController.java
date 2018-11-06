@@ -1,11 +1,13 @@
 package com.wyl.controller;
 
+import com.google.common.eventbus.EventBus;
 import com.wyl.model.Gender;
 import com.wyl.model.Name;
 import com.wyl.pool.model.User;
 import com.wyl.repository.NameRepository;
 import com.wyl.repository.UserRepository;
 import com.wyl.service.ExampleService;
+import com.wyl.utils.eventbus.DataEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,9 @@ public class ExampleController {
     //private StringRedisTemplate template;
 
     @Autowired
+    private EventBus lobbyRequests;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -36,6 +41,7 @@ public class ExampleController {
     @RequestMapping(value = "/name/{id}", method = RequestMethod.GET)
     public String findName(@PathVariable String id) {
         addUser();
+        lobbyRequests.post(new DataEvent(4));
         //ValueOperations<String, String> ops = this.template.opsForValue();
         /*String res = ops.get(id);
         if(StringUtils.isNotBlank(res)){

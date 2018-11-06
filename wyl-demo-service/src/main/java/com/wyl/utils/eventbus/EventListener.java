@@ -1,12 +1,21 @@
 package com.wyl.utils.eventbus;
 
 import com.google.common.eventbus.Subscribe;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by wangyulin on 28/02/2017.
  * 消息接受类
  */
+@Service
 public class EventListener {
+
+    @Autowired
+    public EventListener(){
+
+    }
+
     public int lastMessage = 0;
 
     @Subscribe
